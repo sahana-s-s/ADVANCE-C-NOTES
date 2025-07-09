@@ -1,0 +1,62 @@
+modifiers in c with datatypes
+
+1. short  --> int ==> short int 
+
+2. long --> int, double ==> long int , long double
+
+3. signed --> char, int ==> signed int , signed char 
+
+4. unsigned --> char, int ==> unsigned int , unsigned char
+ 
+signed -> both positive and negative values
+
+unsigned -> only positive
+ 
+1. char -> %c  , string -> %s
+
+2. int --> %d -> signed(+ve and -ve)
+
+    short int (prefix h) ---> %hd , %ho, %hx
+
+    long int (prefix l)  ---> %ld , %lo ,%lx
+ 
+    unsigned int --> %u
+ 
+1. char -> %c  , string -> %s
+
+2. int --> %d -> signed(+ve and -ve)
+
+    short int (prefix h) ---> %hd , %ho, %hx
+
+    long int (prefix l)  ---> %ld , %lo ,%lx
+ 
+    unsigned int --> %u
+ 
+ 
+   ex: int num=12;
+
+         decimal --> %d --> 12
+
+         octal ---> %o ---> 014 (divide by 8)
+
+         hexadecimal --> %x ---> c (0-9,a,b,c,d,e,f)
+
+                     --> %X ---> C (0-9,A,B,C,D,E,F)
+ 
+3. float  --> %f , %g, %e
+
+    float num=2.56;
+
+    printf("%f\n",num);
+
+    printf("%g\n",num);
+
+    printf("%e\n",num);
+
+4. double --> %lf, %lg, %le
+ 
+5. long double --> %Lf, %Lg, %Le
+ 
+6. %p --> to print a value in hexadecimal format (address of var)
+
+ 
