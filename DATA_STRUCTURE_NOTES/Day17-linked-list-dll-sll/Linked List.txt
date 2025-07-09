@@ -1,0 +1,480 @@
+﻿Linked List : it is a linear ds where elements are not stored contiguous location , they are linked using pointers .
+
+
+Node structure 
+1. data -> 10 20 30 ....
+2. next -> it is a pointer or reference -> next element
+
+
+Head -> starting/first node in the list 
+Tail -> it is the last node in the list , 
+     always points to NULL 
+
+
+why?
+insertion/deletion 
+moving elements one after other during insertion and also during deletion -> makes linked list priority over array 
+
+
+index  0  1  2  3  4  5  6  7  8  9 
+arr : 10 20 30 40 50 60
+
+
+insert -> 35 inbetween 
+index  0  1  2  3  4  5 6
+arr : 10 20 30 35 40 50 60
+
+
+delete 30 
+index  0  1  2  3  4  5
+arr : 10 20 40 50 60
+=========================
+Types of Linked List :
+1. Single LS
+2. Double LS
+3. Circular LS
+ 
+1) Single LS:
+   - each node contains a reference to the next node in the list. 
+ - always traversing a sll is forward direction only
+
+
+2) Double LS:
+    - each node contains a reference to both the next and previous nodes.
+    - traversing in both forward and backward directions
+but it requires extra memory for backward reference
+
+
+3) Circular 
+    - last node points back to the head/first node
+    - used for both single and double ls
+
+
+=====================================
+operations 
+1. Insertion
+2. Deletion
+3. Searching 
+
+
+SINGLE LINKED LIST 
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Node
+{
+    int data;
+    struct Node *next; //pointer is of type structure
+};
+
+
+struct Node *createNode(int new_ele);
+void printElements(struct Node *head);
+
+
+int main()
+{
+    struct Node *head = createNode(20);
+    head->next = createNode(30);
+    head->next->next = createNode(40);
+    head->next->next->next = createNode(50);
+    head->next->next->next->next = createNode(60);
+
+
+
+
+    printf("Linked List :\n");
+    printElements(head);
+    return 0;
+}
+
+
+struct Node *createNode(int new_ele) //20 30 40 50 60
+{
+  struct Node *ptr = (struct Node*) malloc(sizeof(struct Node));
+   //int ptr = (int*)malloc(n*sizeof(int))
+
+
+   ptr-> data = new_ele; //10
+   ptr-> next = NULL;
+   return ptr;
+}
+
+
+void printElements(struct Node *head)
+{
+    while(head !=NULL)
+    {
+        printf("%d ",head->data);//20 30 40 50 60
+        //to move to the next ele
+        head = head->next;
+    }
+    printf("\n");
+}
+========================================================================
+1) create and disp
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct stu
+{
+    int data;
+    struct stu *next;
+};
+
+
+typedef struct stu node;
+node *first=NULL,*last=NULL;
+
+
+//struct stu *first=NULL,*last=NULL;
+
+
+//int kavya; //varname;
+//typedef int kavya;// kavya is datatype
+//kavya a,b; //int a,b;*/
+
+
+
+
+                    //  n1  n2  n3  n4
+void create(int ele)//  10  20  30  40
+{
+        node *new  = (node*)malloc(sizeof(node));
+
+
+        if(first==NULL) //null==null yes
+        {
+                new->data = ele;//10  n1
+                new->next = NULL;
+                first=last = new;//n1
+        }
+
+
+        else
+        {
+                new->data=ele; //20 , 30 ,40
+                new->next=NULL;   //n2-> next , n3->next , n4->next
+                last->next=new; //30 n1->next = n2  , n2-> next = n3 , n3->next = n4
+                last=new; //before last was n1 -> now last becomes n2,
+                          //before last was n2 -> now last becomes n3,
+        }
+
+
+}
+
+
+void display()
+{
+        node *temp = first;//10
+        while(temp!=NULL) //10!=null, 20!=null
+        {
+                printf("%d\n",temp->data);//10 20 30
+                temp = temp->next;//n2
+        }
+}
+
+
+
+
+int main()
+{
+        create(10);
+        create(20);
+        create(30);
+        create(40);
+
+
+        printf("Element in Single linked list :\n");
+        display();
+        printf("================\n");
+
+
+        return 0;
+}
+
+
+
+
+********************************************************
+2) create , display, createfront , insertlast, delete front
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct stu
+{
+        int data;
+        struct stu *next;
+};
+
+
+typedef struct stu node;
+node *first=NULL,*last=NULL;
+
+
+//struct stu *first=NULL,*last=NULL;
+
+
+/*int num; //varname;
+typedef int num;// num is datatype
+num a,b; //int a,b;*/
+
+
+
+
+                    //  n1  n2  n3
+void create(int ele)//  10  20  30
+{
+        node *new  = (node*)malloc(sizeof(node));
+
+
+        if(first==NULL) //yes
+        {
+                new->data=ele;//10  n1
+                new->next=NULL;
+                first=last=new;//n1
+        }
+
+
+        else
+        {
+                new->data=ele; //20 , 30
+                new->next=NULL;   //n2-> next , n3->next
+                last->next=new; //30 n1->next = n2  , n2-> next = n3
+                last=new; //before last was n1 -> now last becomes n2,
+                          //before last was n2 -> now last becomes n3,
+        }
+
+
+}
+
+
+void display()
+{
+        node*temp=first;//10
+        while(temp!=NULL) //10!=null 20!=null
+        {
+                printf("%d\n",temp->data);//10 20 30
+                temp=temp->next;
+        }
+}
+
+
+void create_front(int ele)//500
+{
+    node* new = (node*) malloc (sizeof(node));
+
+
+    new->data=ele;
+    new->next=first;//10
+    first=new;
+}
+
+
+void del_front() //1000
+{
+        node *temp=first;
+        first = first->next;
+        free(temp);
+}
+
+
+int main()
+{
+        create(10);
+        create(20);
+        create(30);
+        create(40);
+        printf("Element in Single linked list :\n");
+        display();
+        printf("================\n");
+
+
+        printf("After adding 500 as front node :\n");
+        create_front(500);
+        display();
+        printf("================\n");
+
+
+        printf("After adding 1000 as front node :\n");
+        create_front(1000);
+        display();
+        printf("================\n");
+
+
+        printf("continue by adding element at last node\n");
+        create(50);
+        display();
+        printf("================\n");
+
+
+        printf("Deleting the front element\n");
+        del_front();
+        display();
+        printf("================\n");
+
+
+        printf("Deleting the front element 2nd time\n");
+        del_front();
+        display();
+        printf("================\n");
+        return 0;
+}
+
+
+*****************************************************************
+3)  create, display, createfront, deletefront,---> createlast, del_last
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct stu
+{
+        int data;
+        struct stu *next;
+};
+
+
+typedef struct stu node;
+node *first=NULL,*last=NULL;
+
+
+//struct stu *first=NULL,*last=NULL;
+
+
+                      //  n1  n2  n3
+void create(int ele)  //  10  20  30
+{
+        node *new  = (node*) malloc (sizeof(node));//dynamic 
+
+
+        if(first==NULL) //yes 
+        {
+                new->data = ele; //10  n1
+                new->next = NULL;
+                first=last=new;
+        }
+
+
+        else
+        {
+                new->data = ele;   //20 , 30
+                new->next = NULL;   //n2-> next , n3->next
+                last->next = new;  //30 n1->next = n2  , n2-> next = n3
+                last=new;   //before last was n1 -> now last becomes n2,
+                          //before last was n2 -> now last becomes n3,
+        }
+
+
+}
+void display()
+{
+        node *temp = first;
+        while(temp!=NULL)
+        {
+                printf("%d\n",temp->data);
+                temp=temp->next;
+        }
+}
+
+
+void create_front(int ele)//5
+{
+        node *new = (node*) malloc (sizeof(node));
+
+
+        new->data = ele; //500
+        new->next = first; //10
+        first=new;
+}
+
+
+void create_last(int ele)//400
+{
+        node*new=(node*)malloc(sizeof(node));
+
+
+        new->data=ele;//30
+        new->next=NULL;
+        last->next=new;//400
+        last=new;
+}
+
+
+void del_front()
+{
+        node *temp = first;//500
+        first = first->next;
+        free(temp);
+}
+
+
+void del_last()
+{
+        node *temp = first, *temp1;
+
+
+        while(temp!=last)  //first!=last
+                        //10!=null true ,20!= null true
+                        //30!=null true , 400!=null false
+        {
+          temp1=temp;  // temp1 = 10 20 30
+          temp = temp->next;  // temp = 20 30 400
+        }
+
+
+        last = temp1; //30
+        last->next = NULL;//30 ka next is 400 = null
+
+
+        free(temp); //400
+}
+
+
+
+
+
+
+int main()
+{
+        create(10);
+        create(20);
+        create(30);
+        display();
+        printf("================\n");
+
+
+        create_front(500);
+        display();
+
+
+        printf("================\n");
+
+
+        create_last(400);
+        display();
+        printf("================\n");
+
+
+        del_front();
+        display();
+        printf("================\n");
+
+
+
+
+        del_last();
+        display();
+        printf("================\n");
+
+
+}

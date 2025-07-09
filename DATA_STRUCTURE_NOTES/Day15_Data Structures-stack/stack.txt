@@ -1,0 +1,203 @@
+﻿datastructure
+It is a storage where it is used to store and organize data.
+
+
+1. data:
+2. information:
+
+
+Arrays,linked list, stacks,queues, trees and graphs
+
+
+def: It is a storage to store and organize data
+retrieve
+process
+store the data
+
+
+1. Linear data structure :
+   data elements are arranged sequentially or linearly.
+where each element is attached to previous and next element (adjacent) -> LDS
+     10 20 30 
+Ex: Array, Stack, Queue, linked List 
+
+
+-> Static DS : they have fixed memory size 
+             - it is very easy to access the elements 
+
+
+-> Dynamic DS : the size is not fixed 
+            - size can be randomly updated.
+               Ex: Stack and Queue , Linked List 
+
+
+2. Non Linear data structure : 
+      data elements are not arranged sequentially or linearly.
+    Ex: Trees , Graphs 
+
+
+==========================
+datastructure
+1.stack -> LIFO  
+    ex: storing books , clothes ,plates  
+2.queue
+=========================================
+1. PUSH -> inserting a new element to the top of the stack 
+2. POP -> removes the top element from the stack / taking out
+3. PEEK -> return the top element without removing it
+4. IsEmpty -> checking whether the stack is empty/not
+5. IsFull -> check if the stack is full/not 
+--------------------------------------------------
+Applications of Stack Data Structures 
+1. Recursion 
+2. Function Calls
+3. Browser History 
+=======================================================
+Major operations :
+1. Searching
+2. Sorting
+3. Insertion
+4. updation
+5. deletion 
+----------------------------------------------
+1.introdution to  DS
+2.stack&queue
+3.LinkedList
+4.TYPES of LinkedList
+5.Trees
+6.BST&Expressions
+---------------------------------------------
+#include<stdio.h>
+#define size 6 //stack of size we have fixed to 6 as max
+
+
+void push(int ele);
+void disp();
+
+
+int stack[size]; //global declaration ,outside main , it can be used through the program
+int top=-1;
+
+
+int main()
+{
+    push(25);//0th
+    push(30);//1st
+    push(50);//2nd
+    push(70);//3rd
+    push(80);//4th
+    push(90);//5th
+    //push(200); //stack full
+    disp();
+    return 0;
+}
+
+
+void push(int ele) //25 ,30,50,70,80,90,200
+{
+    if(top == size-1) //6 -1 = 5 , -1==5 false
+    {  //0==5 , 1==5 ,2===5 ,3==5,4==5,5==5
+        printf("Stack is full\n");
+    }
+
+
+    else
+    {
+       top++; // increment top , 0 -> 1 -> 2 -> 3 ->4->5
+       stack[top]=ele; //stack[0]=25; stack[1]=30
+    }                  //stack[2]=50; stack[3]=70
+}                      //stack[4]=80; stack[5]=90
+
+
+
+
+void disp()
+{
+    int i;
+    printf("Elements are :\n");
+    for(i=0; i<=top; i++) //top will be updated , top=5
+    {
+        printf("%d\n", stack[i]);
+    }
+}
+
+
+---------------------------------------------
+stack:
+#include <stdio.h>
+void push(int ele);
+void pop();
+void disp();
+
+
+#define size 6
+int stack[size];
+int top=-1;
+
+
+int main()
+{
+    push(25);
+    push(30);
+    push(50);
+    push(70);
+    push(80);
+    push(90);
+    push(500);
+    disp();
+    pop();//top element80
+    disp();
+    pop();
+    disp();//70
+    push(100);//alreadydeleted2elements
+    disp();
+    return 0;
+}
+
+
+void push(int ele)
+{
+    if(top==size-1)//-1==4, 0==-4, 1==4,2==4,3==4,4==4
+    {
+        printf("Stack is  full\n");
+    }
+    else{
+        top++;//0 1 2 3 4
+        stack[top]=ele;//25,30,50,70,80
+    }
+
+
+}
+
+
+void pop()
+{
+    if(top==-1)    //stackisempty
+    {
+        printf("Stack is empty\n");
+        return;
+    }
+
+
+    printf("\nPoped ele is %d\n",stack[top]);//80
+    top--;
+}
+
+
+void disp()
+{
+    int i;
+    printf("Elements are :\n");
+    for(i=0;i<=top;i++)
+    {
+        printf("%d\n",stack[i]);
+    }
+}
+
+
+
+
+10 size 
+push 5 elements -> 2 pop 
+push 3 elements -> 2 pop 
+push 4 elements

@@ -1,0 +1,219 @@
+﻿queue
+=====
+queue is first in first out data structure.
+we have both push and pop functions
+push()- it is used to insert the elements inside the queue
+pop()- it is used to remove the elements from the queue
+here we need two varaibles that is to push and pop
+
+
+rear(push) 
+front(pop)
+
+
+front=0
+rear=-1 -> top in stack where insertion happens 
+
+
+
+
+#include<stdio.h>
+#define size 10
+void push(int ele);
+void pop();
+
+
+int front; //glob var is always 0 , front=0
+int rear=-1;
+int queue[size];
+
+
+int main()
+{
+        push(10);
+        push(20);
+        push(30);
+        push(40);
+        push(50);
+        display();
+
+
+        pop();
+        display();
+
+
+        pop();
+        display();
+
+
+    printf("\n");
+        push(45);//error queue is full
+        display();
+
+
+        pop();
+        display();
+
+
+        pop();
+        display();
+
+
+        pop();
+        display();
+
+
+        printf("\n");
+        push(105);//error queue is full
+        display();
+}
+
+
+void push(int ele)
+{
+        if(rear == size-1)
+        {
+                printf("\nqueue is full:\n");
+                return;
+        }
+
+
+        rear++;
+        queue[rear]=ele;
+}
+
+
+void pop()
+{
+         //printf("%s\n",__func__);
+
+
+        if(front>rear)  // 0>-1
+        {
+                printf("queue is empty\n");
+                return;
+        }
+
+
+        printf("\npopped ele is %d\n",queue[front]);
+        //queue[0] = 10 popped
+
+
+        front++;
+        //1 queue[1]=20
+        //2 queue[2]=30
+}
+
+
+void display()
+{
+         int i=front;
+        for(; i<=rear; i++)
+        printf("queue[%d] is %d\n",i,queue[i]);
+}
+
+
+======================================================
+#define SIZE 20
+
+
+int queue[SIZE];
+int front = -1;
+int rear = -1;
+
+
+void enqueue(int element)
+{
+    if (rear == SIZE - 1)
+    {
+        printf("Queue is full");
+        return;
+    }
+
+
+    if (front == -1)
+    {
+        front = 0;
+    }
+
+
+    rear++;
+    queue[rear] = element;
+}
+
+
+int dequeue()
+ {
+    if (front == -1 || front > rear)
+    {
+        printf("Queue is empty");
+        return -1;
+    }
+
+
+    int element = queue[front];
+    front++;
+    return element;
+}
+
+
+int main()
+ {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    
+    printf("%d \n", dequeue()); //10
+    printf("%d \n", dequeue()); //20
+    printf("%d \n", dequeue()); //30
+
+
+    enqueue(50);
+    printf("%d \n", dequeue());//40
+    printf("%d \n", dequeue());//50
+    return 0;
+}
+=====================================
+#include<stdio.h>
+void main(void)
+{
+    unsigned int num1=40;
+    int num2 = -200;
+
+
+    printf("value of num1+num2 is : %d\n",num1+num2);
+
+
+    if((num1+num2) > 10) //10-40 =-30
+    {
+        printf("Greater than 10\n");
+    }
+    else
+    {
+        printf("Less than or equal 10\n");
+    }
+}
+---------------------------
+#include<stdio.h>
+void main(void)
+{
+    unsigned int num1=10;
+    int num2 = -40;
+
+
+    printf("value of num1+num2 is : %d\n",num1+num2);
+
+
+    int res=num1+num2;
+
+
+    if(res > 10) //10-40 =-30
+    {
+        printf("Greater than 10\n");
+    }
+    else
+    {
+        printf("Less than or equal 10\n");
+    }
+}
