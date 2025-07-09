@@ -1,0 +1,196 @@
+﻿DMA 
+  Dynamic Memory Allocation -> where memory is allocated during the runtime of the program. 
+- heap memory 
+
+
+=> it is a procedure in which the size of an array(data structure) is changed during the runtime.
+
+
+int numbers[5]; //store  valid numbers
+char names[5]; //store 4 characters bcz 1 for null 
+
+
+4 impo function  => stdlib.h library
+1. malloc()
+2. calloc()
+3. free()
+4. realloc()
+
+
+                Static        Dynamic
+1. size         fixed         might vary 
+2. segment      stack         heap
+3.            compile time    runtime 
+4. In SMA --> after execution memory will be destroyed automatically 
+4. In DMA ---> memory becomes permanent if not deleted by the programmer.
+
+
+--------------------------------------
+1. malloc() -> memory allocation dynamically (runtime)
+   -> It can allocate a single large block of memory with some specified size.
+    -> it always return a pointer -> void type 
+    -> since pointer is of void type -> it can be casted to any datatype 
+    -> it wont allocate a memory at execution time and
+hence -> value be garbage initially .
+
+
+    ptr = (type-cast *) malloc (byte-size);
+
+
+  ex: ptr = (int*) malloc(13*sizeof(int)); 
+           //13*4= 52 bytes 
+  
+=======================================================
+1) #include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    // This pointer will hold the
+    // base address of the block created
+    int *ptr;
+    int n,i;
+
+
+    printf("Enter number of elements:");
+    scanf("%d",&n);//5
+
+
+    printf("No of elements are : %d\n", n);
+
+
+    // Dynamically allocate memory using malloc()
+    ptr = (int*) malloc (n * sizeof(int));
+
+
+    // Check if the memory has been successfully
+    // allocated by malloc or not
+    if (ptr == NULL)
+    {
+        printf("Memory not allocated.\n");
+        exit(0);
+    }
+
+
+    else
+    {
+        printf("Memory successfully allocated using malloc.\n\n");
+
+
+        for (i=0; i<n; ++i) //0<5 1<5 2<5
+        {
+            ptr[i] = i + 1; //1 2 3 4 5
+        }
+
+
+
+
+        printf("The elements of the array are: \n");
+        for (i = 0; i < n; ++i)
+        {
+            printf("%d -> %d\n ", ptr[i],&ptr[i]);
+        }
+    }
+
+
+    printf("\n");
+    return 0;
+}
+
+
+==========================================================
+2)
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+  int n,i,*ptr,sum=0;
+    printf("Enter number of elements: ");
+    scanf("%d",&n);
+
+
+    ptr=(int*)malloc(n*sizeof(int));
+    if(ptr==NULL)
+    {
+        printf("Sorry! unable to allocate memory");
+        exit(0);
+    }
+
+
+    printf("Enter elements of array: ");
+    for(i=0;i<n;++i)
+    {
+        scanf("%d",ptr+i); //ptr[0] ,ptr[1],ptr[2]
+        sum+=*(ptr+i);
+        /*=> sum = sum + *(ptr+i)
+                 = 0 + 10 =10
+        =>   sum = 10 + 20 =30
+        => sum = 30 + 30 =60
+    }
+
+
+    printf("Sum=%d",sum);
+
+
+    free(ptr);
+return 0;
+}
+------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    // This pointer will hold the
+    // base address of the block created
+    int *ptr;
+    int n,i;
+
+
+    printf("Enter number of elements:");
+    scanf("%d",&n);//5
+
+
+    printf("No of elements are : %d\n", n);//5
+
+
+    // Dynamically allocate memory using malloc()
+    ptr = (int*) malloc (n * sizeof(int));
+
+
+    // Check if the memory has been successfully
+    // allocated by malloc or not
+    if (ptr == NULL)
+    {
+        printf("Memory not allocated.\n");
+        exit(0); //return 1
+    }
+
+
+     printf("Memory successfully allocated using malloc.\n\n");
+
+
+      printf("Enter the elements\n");
+        for (i=0; i<n; i++)
+        {
+           scanf("%d",&ptr[i]);
+        }
+
+
+
+
+    printf("The elements of the array are: \n");
+        for (i = 0; i < n; ++i)
+        {
+            printf("%d -> %d\n ", ptr[i],&ptr[i]);
+        }
+
+
+
+
+    printf("\n");
+
+
+    free(ptr);
+
+
+    return 0;
+}

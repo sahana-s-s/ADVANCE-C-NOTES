@@ -1,0 +1,83 @@
+﻿#include <stdio.h>
+int main()
+{
+   FILE *fp;
+   fp=fopen("pri.txt","w+");
+
+
+   fputs("this is advance c program",fp);
+
+
+   printf("Before => %ld\n",ftell(fp));
+   //characters : 25
+
+
+   fseek(fp,7,SEEK_SET);//beggining move 7 characters
+   printf("After => %ld\n",ftell(fp));
+
+
+   fseek(fp,3,SEEK_CUR);//current position is 7
+   printf("2nd time => %ld\n",ftell(fp));//10
+
+
+   fputs("Good Luck,take care",fp);
+   printf("3rd time => %ld\n",ftell(fp));//29
+
+
+   fseek(fp,0,SEEK_SET); //beginning again
+   //fseek(fp,0,SEEK_CUR);//29 current pos
+   printf("4th time => %ld\n",ftell(fp)); // 0
+
+
+   fseek(fp,0,SEEK_END); //end of file
+   printf("5th time => %ld\n",ftell(fp)); //29
+    return 0;
+
+
+}
+======================
+#include<stdio.h>
+
+
+int main()
+{
+    char input[500];
+    FILE *fp=fopen("shree.txt","w+");
+
+
+    fputs("Sunscreen is good for daily use, ", fp);
+    printf("Before => %ld\n", ftell(fp));
+
+
+    fseek(fp,3,SEEK_SET);
+    printf("1st => %ld\n", ftell(fp));
+
+
+    fseek(fp,0,SEEK_END);
+    printf("last => %ld\n", ftell(fp));
+
+
+    fputs("\n",fp);
+    fputs("please use it regularly",fp);
+    printf("on add => %ld\n", ftell(fp));
+
+
+    fseek(fp,-9,SEEK_END);
+    printf("neagtive => %ld\n", ftell(fp));
+
+
+    fputs("daily basis ",fp);
+    printf("on add => %ld\n", ftell(fp));
+
+
+    /*rewind(fp);
+    printf("after rewind() => %ld\n", ftell(fp));
+
+
+    fputs("\n",fp);
+    fputs("thanks for sujjestion !!!",fp);*/
+
+
+    fclose(fp);
+    return 0;
+}

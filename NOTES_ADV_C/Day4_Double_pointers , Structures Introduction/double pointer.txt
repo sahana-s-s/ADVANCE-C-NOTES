@@ -1,0 +1,101 @@
+﻿pointer to pointer (double pointer)
+
+
+datatype **pointer_name; ( 2 asterisk symbol)
+ **pptr -> address of pointer, value of pointer 
+
+
+#include <stdio.h>
+int main()
+{
+     int a=100,b=20;
+     int *ptr ;
+     ptr = &a; //holds address of a
+
+
+     /* int a=100,b=20,*ptr;
+     ptr=&a; */
+
+
+     int **pptr;
+     pptr = &ptr;//holds address of ptr
+
+
+    printf("address of a : %u\n",&a); //address of a 6422044
+    printf("address of b : %u\n",&b); //address of b  6422040
+
+
+    printf("address of pointer itself : %u\n",&ptr); //adress of ptr 6422032
+    printf("address of double pointer : %u\n\n",&pptr);//address of double pointer 6422024
+
+
+    printf("*ptr -> %u\n",*ptr); //-> value of a
+    printf("*pptr -> %u\n",*pptr);//-->&ptr --> &a -->6422044
+    printf("**pptr -> %u\n",**pptr);//10
+    return 0;
+}
+
+
+----------------------------------------------
+
+
+#include <stdio.h>
+ 
+int main()
+{
+    char str[]="Bangalore";
+    char *ptr=str;
+ 
+    printf("%s\n",str);
+    printf("%s\n",ptr);
+    printf("%c\n",*ptr);
+    printf("%c\n",++*ptr);
+ 
+    printf("%s\n",str);
+    printf("%s\n",ptr);
+ 
+    printf("%c\n",*ptr++);
+    printf("%s\n",ptr);
+    return 0;
+}
+
+
+--------------------------------------------------------------
+variable or pointer
+ 
+-> A variable is some container which can hold any data such as integer,double and char.
+these are used in program which can be manipulated.
+
+
+-> A pointer is a variable which holds the address of any variable /object/data location.
+these are used to access and manipulate the data which are stored in the memory.
+
+
+#include <stdio.h>
+int main()
+{
+    int a=10;
+    int *ptr = &a; //holds address of a
+    int **pptr = &ptr;//holds address of ptr
+
+
+    printf("Size of var : %d\n",sizeof(a));
+    printf("Size of pointer : %d\n",sizeof(ptr));
+    printf("Size of double pointer : %d\n",sizeof(pptr));
+    return 0;
+}
+
+
+#include <stdio.h>
+int main()
+{
+    char a='k';
+    char *ptr = &a; //holds address of a
+    char **pptr = &ptr;//holds address of ptr
+
+
+    printf("Size of var : %d\n",sizeof(a));
+    printf("Size of pointer : %d\n",sizeof(ptr));
+    printf("Size of double pointer : %d\n",sizeof(pptr));
+    return 0;
+}

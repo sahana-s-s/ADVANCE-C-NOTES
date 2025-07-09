@@ -1,0 +1,161 @@
+﻿Structures
+  group of related variables into one place 
+*each variable in the structure is known as member of structure
+
+
+user defined datatype -> grouping different related data under single name 
+
+
+int, float,char...
+
+
+syntax:
+
+
+struct structure_name
+{
+   datatype name;
+   datatype varname2;
+};
+
+
+struct structure_name
+{
+   datatype name;
+   datatype varname2;
+}sobj; // type1
+
+
+
+
+or
+
+
+struct structure_name sobj; //type2
+-----------------------------------------
+#include <stdio.h>
+
+
+struct EmployeeDetails
+{
+    int empno;// starts 101
+    char name[20];
+    char address[25];
+};
+//connect structure and main method
+//structure object => many ways
+//to access -> . operator is must
+
+
+int main()
+{
+    struct EmployeeDetails e1,e2; //2nd way
+
+
+    printf("Enter Employee_Number\n");
+    scanf("%d",&e1.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e1.name);
+
+
+    printf("\nEmployee Details are : \n");
+    printf("Empno : %d\n",e1.empno);
+    printf("Name : %s\n",e1.name);
+
+
+
+
+    printf("\nEnter Employee_Number\n");
+    scanf("%d",&e2.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e2.name);
+
+
+    printf("\nEmployee Details are : \n");
+    printf("Empno : %d\n",e2.empno);
+    printf("Name : %s\n",e2.name);
+    return 0;
+}
+================================================
+#include <stdio.h>
+
+
+struct EmployeeDetails
+{
+    int empno;// starts 101
+    char name[20];
+    char address[25];
+}e3,e4; //1st way
+
+
+//connect structure and main method
+//structure object => many ways
+//to access -> . operator is must
+
+
+struct EmployeeDetails e5; //3rd way
+
+
+int main()
+{
+    struct EmployeeDetails e1,e2; //2nd way
+
+
+    printf("Enter Employee_Number\n");
+    scanf("%d",&e1.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e1.name);
+
+
+    printf("\nEmployee Details are : \n");
+    printf("Empno : %d\n",e1.empno);
+    printf("Name : %s\n",e1.name);
+
+
+
+
+    printf("\nEnter Employee_Number\n");
+    scanf("%d",&e2.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e2.name);
+
+
+    printf("\nEmployee Details are : \n");
+    printf("Empno : %d\n",e2.empno);
+    printf("Name : %s\n",e2.name);
+
+
+    printf("\nEnter Employee_Number\n");
+    scanf("%d",&e3.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e3.name);
+
+
+    printf("\nEmployee Details are : \n");
+    printf("Empno : %d\n",e3.empno);
+    printf("Name : %s\n",e3.name);
+
+
+    printf("\nEnter Employee_Number\n");
+    scanf("%d",&e5.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e5.name);
+
+
+    printf("\nEmployee Details are : \n");
+    printf("Empno : %d\n",e5.empno);
+    printf("Name : %s\n",e5.name);
+    return 0;
+}

@@ -1,0 +1,205 @@
+﻿#include <stdio.h>
+
+
+int main()
+{
+    FILE *fp;
+    char str[50]= "How are you";
+    char str1[30]="\nTake care";
+
+
+    fp = fopen("D:/TEACHING/CRANES/FILES/second.txt","w");
+
+
+    fputs(str,fp);
+
+
+    fputs(str1,fp);
+
+
+    //fputs("\nTake care",fp);
+
+
+    fclose(fp);
+    return 0;
+}
+------------------------------
+#include <stdio.h>
+
+
+int main()
+{
+    FILE *fp;
+    char str[50]= "How are you ";
+    char name[50];
+
+
+    fp = fopen("D:/TEACHING/CRANES/FILES/second.txt","w");
+
+
+    fputs(str,fp);
+
+
+    printf("enter your name\n");
+    scanf("%s",&name);
+
+
+    fputs(name,fp);
+
+
+    fclose(fp);
+    return 0;
+}
+---------------------
+#include <stdio.h>
+
+
+int main()
+{
+    FILE *fp;
+    char str[50]= "How are you ";
+    char name[50];
+
+
+    char path[]="D:/TEACHING/CRANES/FILES/second.txt";
+    fp = fopen(path,"w");
+
+
+    fputs(str,fp);
+
+
+    printf("enter your name\n");
+    scanf("%s",&name);
+    fputs(name,fp);
+
+
+    fclose(fp);
+    return 0;
+}
+---------------------------
+#include <stdio.h>
+
+
+int main()
+{
+    FILE *fp;
+    //int age;//dont use
+    char str[50]= "50";
+    char name[50],age[15];
+
+
+
+
+    char path[]="D:/TEACHING/CRANES/FILES/second.txt";
+    fp = fopen(path,"w");
+
+
+    fputs(str,fp);
+
+
+    printf("enter your name\n");
+    scanf("%s",&name);
+    fputs(name,fp);
+
+
+    printf("enter your age\n");
+    scanf("%s",&age);
+    //fputc(age,fp);//dont
+    //fputs(age,fp);//never use
+
+
+    fputs(age,fp);
+
+
+    fclose(fp);
+    return 0;
+}
+===========================
+Reading from file 
+#include <stdio.h>
+int main()
+{
+    FILE *fp;
+    fp = fopen("D:/TEACHING/CRANES/FILES/mine.txt","r");
+
+
+    char str[250];
+    printf("Reading a file!!!\n");
+    fgets(str,250,fp);
+
+
+    printf("%s \n",str); //output / console
+    fclose(fp);
+    return 0;
+}
+------------------------------
+#include <stdio.h>
+//#define EOF // -1 present inside stdio.h
+
+
+int main()
+{
+    FILE *fp;
+    char ch;
+
+
+    fp = fopen("D:/TEACHING/CRANES/FILES/mine.txt","r");
+
+
+    if(fp==NULL)
+    {
+        printf("error opening file\n");
+        return 1;
+    }
+
+
+    //read characters from file until condi is true
+
+
+    while((ch = fgetc(fp)) != EOF)
+    {
+        putchar(ch);//output
+        //printf("%c",ch);
+    }
+
+
+    fclose(fp);
+    return 0;
+}
+//fgetc => EOF
+
+
+----------------------------------------------
+#include <stdio.h>
+//#define EOF // -1 present inside stdio.h
+
+
+int main()
+{
+    FILE *fp;
+    char input[500];
+
+
+    fp = fopen("D:/TEACHING/CRANES/FILES/mine.txt","r");
+
+
+    if(fp==NULL)
+    {
+        printf("error opening file\n");
+        return 1;
+    }
+
+
+    //read characters from file until condi is true
+                        //500
+    while((fgets(input,sizeof(input),fp)) != NULL)
+    {
+        printf("%s",input);
+    }
+
+
+    fclose(fp);
+    return 0;
+}
+//fgetc => EOF
+//fgets => NULL

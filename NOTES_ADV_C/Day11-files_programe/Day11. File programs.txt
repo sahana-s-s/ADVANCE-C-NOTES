@@ -1,0 +1,170 @@
+﻿1) WAP to find number of characters,lines and words from given file
+#include<stdio.h>
+#include<stdlib.h>
+#include<ctype.h> //isspace() , isdigit(), isalnum(), isupper(),islower() 
+
+
+int main()
+{
+    FILE *fp;
+    char ch;
+    char filename[100] ="mine.txt";//not need of path , store the file in the same location where project is created
+    //char input[500];
+    int lines=0,words=0,characters=0,dummy=0;
+
+
+    fp = fopen(filename,"r");
+
+
+    if(fp == NULL)
+    {
+        printf("could not open the file \n");
+        return 1;
+    }
+
+
+    while((ch = fgetc(fp))!= EOF)
+    {
+        characters++; //count of characters
+        printf("%c",ch);
+
+
+        if(ch == '\n')
+        {
+            lines++;
+        }
+
+
+       if(isspace(ch)) // int isspace(int)
+       {   // '' space , \t , \n , \v
+           dummy = 0;
+       }
+
+
+       else if(dummy==0)
+       {
+           dummy=1;
+           words++;
+       }
+    }
+    printf("\n count of characters : %d\n",characters);
+    printf("\n count of Lines : %d\n",lines);
+    printf("\n count of words : %d\n",words);
+
+
+
+
+    fclose(fp);
+    return 0;
+}
+================================
+2) WAP to copy the contents from one file to another file  
+
+
+#include<stdio.h>
+
+
+int main()
+{
+FILE *fp;
+FILE *fp1;
+  fp = fopen("mine.txt","r");
+  fp1 = fopen("kavz.txt","w");
+  char ch;
+  
+  if(fp==NULL)
+  {
+      printf("Unable to open \n");
+      return 1;
+  }
+  if(fp1==NULL)
+  {
+      printf("Unable to open \n");
+      return 1;
+  }
+  while ((ch = fgetc(fp)) != EOF) 
+    {
+        fputc(ch, fp1);
+    }
+   fclose(fp);
+   fclose(fp1);
+    return 0;
+
+
+}
+================================================
+3. WAP to reverse the content of a file 
+
+
+i/p : Hello World!
+o/p : !dlroW olleH
+================================================
+4. Library Management system 
+   Hotel Management system 
+================================================
+*
+**
+***
+****
+*****
+
+
+
+
+1
+22
+333
+4444
+55555
+
+
+1
+12
+123
+1234
+12345
+-----------------------------------------
+5
+4 5
+3 4 5 
+2 3 4 5
+1 2 3 4 5
+
+
+#include <stdio.h>
+int main()
+{
+    for (int i = 5; i >= 1; i--)
+    {
+        for (int j = i; j <= 5; j++)
+        {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+---------------------------------------
+1 0 1 0 1
+0 1 0 1 0
+1 0 1 0 1
+0 1 0 1 0
+1 0 1 0 1
+
+
+#include <stdio.h>
+
+
+int main()
+{
+    int i,j;
+    for (i=1;i<=5;i++)
+    {
+        for (j=0;j<5;j++)
+        {
+            printf("%d ",(i+j)%2);
+        }
+        printf("\n");
+    }
+    return 0;
+}

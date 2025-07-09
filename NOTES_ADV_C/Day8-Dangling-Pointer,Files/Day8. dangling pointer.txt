@@ -1,0 +1,120 @@
+﻿Dangling pointer 
+  It is a pointer that does not point to a valid memory location.
+It points to memory that has been freed,out of scope.
+
+
+by using DP , undefined behaviour 
+
+
+#include <stdio.h>
+int *disp();
+
+
+int main()
+{
+    int *ptr = disp();  //ptr is a dangling pointer
+    //local is out of scope , ptr pointing to invalid memory
+    printf("%d\n",*ptr);//52
+    return 0;
+}
+
+
+int *disp()
+{
+    int var=52; //local variable
+    return &var;//returning address of local var
+}
+=====================================================
+define a structure -> College 
+1. name
+2. department -> 
+3. location
+4. fee 
+5. placement 
+
+
+person to give a info -> scanf()
+print
+use pointer concept 
+//use concept of functions -> Assignment 
+
+
+----------------------------
+#include <stdio.h>
+ 
+struct College {
+    char name[50];
+    char departments[5][50]; // To store up to 5 departments
+    int dept_count;          // Number of departments
+    char location[50];
+    float fee;
+    char placement[20];          
+};
+ 
+int main() {
+    struct College c;
+    struct College *ptr = &c;
+ 
+    printf("Enter College Name: ");
+    scanf(" %[^\n]", ptr->name);
+ 
+    printf("Enter Location: ");
+    scanf(" %[^\n]", ptr->location);
+ 
+    printf("Enter Fee: ");
+    scanf("%f", &ptr->fee);
+ 
+    printf("Is there Placement (good/better/best): ");
+    scanf(" %s", &ptr->placement);
+ 
+    printf("How many departments? (max 5): ");
+    scanf("%d", &ptr->dept_count);
+ 
+    if (ptr->dept_count > 5) {
+        printf("Only 5 departments allowed. Setting to 5.\n");
+        ptr->dept_count = 5;
+    }
+ 
+    for (int i = 0; i < ptr->dept_count; i++) {
+        printf("Enter name of department %d: ", i + 1);
+        scanf(" %[^\n]", ptr->departments[i]);
+    }
+ 
+    // Display
+    printf("\n--- College Information ---\n");
+    printf("Name       : %s\n", ptr->name);
+    printf("Location   : %s\n", ptr->location);
+    printf("Fee        : %.2f\n", ptr->fee);
+    printf("Placement  : %s\n", ptr->placement);
+    printf("Departments:\n");
+    for (int i = 0; i < ptr->dept_count; i++) {
+        printf("  %d. %s\n", i + 1, ptr->departments[i]);
+    }
+ 
+    return 0;
+}
+
+
+ 
+-----
+output:
+Enter College Name: SIT
+Enter Location: TUMKUR
+Enter Fee: 300000
+Is there Placement (good/better/best): GOOD
+How many departments? (max 5): 4
+Enter name of department 1: EIE
+Enter name of department 2: CS
+Enter name of department 3: TC
+Enter name of department 4: EC
+ 
+--- College Information ---
+Name       : SIT
+Location   : TUMKUR
+Fee        : 300000.00
+Placement  : GOOD
+Departments:
+  1. EIE
+  2. CS
+  3. TC
+  4. EC

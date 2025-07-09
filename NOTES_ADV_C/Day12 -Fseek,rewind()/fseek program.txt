@@ -1,0 +1,113 @@
+﻿Vitamin C is very important to skin
+
+
+8 characters
+C is very important to skin
+
+
+go to begin -> fseek(fp,0,seek_set)
+More good if retinol or Niaciamide is used, => 
+
+
+More good if retinol or Niaciamide is used, C is very important to skin
+
+
+----------------------------------
+#include <stdio.h>
+int main()
+{
+   FILE *fp;
+   fp=fopen("magic.txt","w+");
+
+
+   fputs("Vitamin C is very important to skin",fp);
+   printf("Before => %ld\n",ftell(fp)); //characters : 35
+
+
+   fseek(fp,8,SEEK_SET);
+   printf("After => %ld\n",ftell(fp));//8
+
+
+   fseek(fp,0,SEEK_SET);
+   printf("begin => %ld\n",ftell(fp));//
+
+
+   fputs("More good if retinol or Niaciamide is used,",fp);
+   printf("2nd time => %ld\n",ftell(fp));
+
+
+   //fseek(fp,0,SEEK_CUR);
+   //printf("CURRENT POS => %ld\n",ftell(fp));
+
+
+   fputs("C is very important to skin",fp);
+   printf("Before => %ld\n",ftell(fp));
+    return 0;
+
+
+}
+===============================
+#include<stdio.h>
+
+
+int main()
+{
+    char input[500];
+    FILE *fp=fopen("priya.txt","w+");
+
+
+    fputs("Vitamin C is very important to skin", fp);
+    printf("Before => %ld\n", ftell(fp));
+
+
+    fseek(fp, 8,SEEK_SET);
+    printf("after => %ld\n", ftell(fp));
+
+
+    while((fgets(input, 500, fp))!=NULL)
+    {
+        printf("%s", input);
+    }
+
+
+
+
+    fseek(fp,0,SEEK_SET);
+
+
+    fputs("More good if retinol or Niaciamide is used,", fp);
+    printf("third => %ld\n", ftell(fp));
+    fseek(fp,1,SEEK_END);
+    fputs(input,fp);
+    printf("ftell => %ld\n", ftell(fp));
+
+
+
+
+    /*fseek(fp,3,SEEK_CUR);
+    printf("second time => %ld\n", ftell(fp));
+
+
+    fputs("Good luck. Take care!!!", fp);
+    printf("third => %ld\n", ftell(fp));
+
+
+    fseek(fp,0,SEEK_SET);
+    printf("4th => %ld\n", ftell(fp));
+
+
+    while((fgets(input, 500, fp))!=NULL)
+    {
+        printf("%s", input);
+    }
+
+
+    fseek(fp,0,SEEK_END);
+    printf("5th => %ld\n", ftell(fp));*/
+
+
+
+
+    fclose(fp);
+    return 0;
+}

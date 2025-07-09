@@ -1,0 +1,149 @@
+﻿//constant pointer,
+//pointer to constant
+
+
+
+
+1. constant pointer
+data pointed by the pointer
+is constant (cannot be changed).
+
+
+-- the pointer always points to a
+fixed memory location but the value inside that
+location can be changed (variable )
+
+
+const <typeofpointer> * <nameofpointer>
+
+
+const int *ptr; -> pointer to a constant int -> you can change the pointer, but not the value it points to 
+ 
+int const *ptr; -> constant pointer to an int type -> you cannot change pointer , but can change the value it points to 
+
+
+#include<stdio.h>
+int main()
+{
+    int a=560,b=415;
+    const int *ptr =&a;
+
+
+    printf("%d -> %d \n",*ptr,ptr);
+
+
+    a=1500;
+
+
+    printf("%d -> %d \n",*ptr,ptr);
+}
+
+
+---------------------------------
+#include<stdio.h>
+int main()
+{
+    int a=560,b=415;
+    int *const ptr = &a; //fine
+
+
+    printf("%d -> %d \n",*ptr,ptr);
+
+
+    //a=1500; or
+    *ptr = 1003; //valid
+
+
+   printf("%d -> %d \n",*ptr,ptr);
+}
+
+
+--------------------------------
+#include<stdio.h>
+int main()
+{
+    int a=560,b=415;
+    //int *const ptr = &a; //constant pointer
+    int const *ptr =&a; // const int *ptr =&a;
+
+
+    printf("%d -> %d \n",*ptr,ptr);
+
+
+    //*ptr = 1003; //invalid
+
+
+    ptr = &b;
+    printf("%d -> %d \n",*ptr,ptr);
+}
+--------------------------------------------------------------
+2. pointer to constant
+--pointer can point to different mem locations but you cannot modify the value at the location (because the value is constant)
+
+
+
+
+#include<stdio.h>
+int main()
+{
+    int num1=60,num2=41;
+
+
+    const int *ptr; //const int *ptr =&num1;
+    ptr = &num1;
+    printf("%d -> %d \n",*ptr,ptr);
+
+
+    //num1=1500; //constant pointer
+    //*ptr = 1500; //using pointer value is tryng to change
+
+
+    ptr = &num2;
+    //*ptr=2000;//not possible 
+    printf("%d -> %d \n",*ptr,ptr);
+}
+
+
+
+
+
+
+--------------------------------
+#include<stdio.h>
+int main()
+{
+    int a=560,b=415;
+    int *const ptr = &a; //fine
+
+
+    printf("%d -> %d \n",*ptr,ptr);
+
+
+    *ptr = 1003; //valid
+    
+    printf("%d -> %d \n",*ptr,ptr);
+
+
+}
+
+
+#include<stdio.h>
+int main()
+{
+    int a=560,b=415;
+    int *const ptr = &a; //fine
+
+
+    printf("%d\n",*ptr);
+
+
+    *ptr = 1003; //valid
+
+
+    ptr = &b; //ivalid
+
+
+    printf("%d\n",*ptr);
+
+
+}

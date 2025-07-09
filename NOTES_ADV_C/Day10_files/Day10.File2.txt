@@ -1,0 +1,94 @@
+﻿#include <stdio.h>
+
+
+int main()
+{
+    char arr[50],arr1[50];
+    int year;
+
+
+   FILE *fp;
+   fp = fopen("D:/TEACHING/CRANES/FILES/second.txt","r");
+
+
+   fscanf(fp,"%s %s",&arr,&arr1);
+   printf("%s \t %s",arr,&arr1);
+    return 0;
+}
+
+
+--------------------------------
+#include <stdio.h>
+int main()
+{
+    int arr[5] = {10, 80, 45, 60, 30};
+
+
+    int first = arr[0];
+    int second;
+
+
+    for (int i = 0; i < 5; i++)
+    {
+        if(first <= arr[i]) //80 true
+        {
+            second = first; //10
+            first = arr[i]; //80
+        }
+        else if(second < arr[i] && second != first)
+        {
+            second = arr[i];
+        }
+    }
+    printf("First largest element : %d \n",first);
+    printf("Second largest element :%d", second);
+
+
+}
+----------------------------------------
+//count number of lines ,words,characters from file
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+
+int main()
+{
+    FILE *fp;
+    char ch;
+    char filename[100] ="D:/TEACHING/CRANES/PROGRAMS/mine.txt";
+    //char input[500];
+    int lines=0,words=0,characters=0;
+
+
+    fp = fopen(filename,"r");
+
+
+    if(fp == NULL)
+    {
+        printf("could not open the file \n");
+        return 1;
+    }
+
+
+    while((ch = fgetc(fp))!= EOF)
+    {
+        characters++; //count of characters
+        //printf("%c",ch);
+
+
+        if(ch == '\n')
+        {
+            lines++;
+        }
+    }
+    printf("\n count of characters : %d\n",characters);
+    printf("\n count of Lines : %d\n",lines+1);
+
+
+    fclose(fp);
+    return 0;
+}

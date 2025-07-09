@@ -1,0 +1,124 @@
+﻿datatype varname;
+int num; //declaration and defination 
+           garbage, 0
+
+
+a=6;
+a==6;
+
+
+
+
+datatype arrname[size];
+int 
+char
+float 
+double ...
+
+
+Array -> 
+strings -> char as datatype 
+<string.h>
+
+
+
+
+declare a string -> store your name 
+find me the length using inbuilt function 
+strlen() 
+
+
+
+
+#include<stdio.h>
+int disp(); //declare
+
+
+int main() //start keyword -> main 
+{
+  int num=0;
+   printf("Hai");
+   disp();//calling
+ 
+  return 0; //compiler 
+}
+
+
+int disp()
+{
+   int a,b,res;
+   pf("enter a & b\n");
+   scanf("%d%d);
+
+
+   res = a+b; 
+   return res;
+}
+-------------------------------------------
+#include<stdio.h>
+int disp(); //declare
+
+
+int main() //start keyword -> main
+{
+   printf("Hai");
+
+
+   int sum = disp();//calling
+   printf("Addition is : %d\n",sum); //50
+   return 0; //compiler
+}
+
+
+int disp() //defination
+{
+   int a,b,res;
+   printf("enter a & b (ex: 10!20)\n");
+   scanf("%d!%d",&a,&b); //20 30
+
+
+   res = a+b; //50
+   return res;
+}
+========================================
+
+
+#include<stdio.h>
+int swap(int,int);  //call by value
+//changes made in called function(swap),
+//wont reflect in calling function (main)
+
+
+int main()
+{
+   int num1,num2;
+   printf("enter num1 & num2 \n");
+   scanf("%d%d",&num1,&num2); //10 20
+   printf("Before swap : %d %d \n",num1,num2);//10 20
+   printf("Before swap mem : %d %d \n\n",&num1,&num2);
+
+
+   swap(num1,num2);
+
+
+   printf("\nAfter swap : %d %d \n",num1,num2);
+   printf("after swap mem : %d %d \n\n",&num1,&num2);
+
+
+   return 0;
+}
+
+
+int swap(int a,int b) //defination
+{
+  int temp;
+  temp=a;//10
+  a=b;//20
+  b=temp;//10
+
+
+  printf("\nInside swap : %d %d \n",a,b); //20 10
+  printf("Inside swap mem : %d %d \n",&a,&b);
+
+
+}

@@ -1,0 +1,36 @@
+﻿#include <stdio.h>
+int main()
+{
+
+
+    char name[50], address[100], dob[15], usn[20];
+    int year_of_grad;
+
+
+    printf("Enter your Name: ");
+    scanf(" %[^\n]", name);
+
+
+    printf("Enter your Address: ");
+    scanf(" %[^\n]", address);
+
+
+    printf("Enter your Date of Birth (dd/mm/yyyy): ");
+    scanf(" %[^\n]", dob);
+
+
+    printf("Enter your USN: ");
+    scanf(" %[^\n]", usn);
+
+
+    printf("Enter your Year of Graduation: ");
+    scanf("%d", &year_of_grad);
+
+
+    printf(" Name    : %s\n Address : %s\n DOB     : %s\n USN    : %s\n YOG     : %d\n", name, address, dob, usn, year_of_grad);
+
+
+    return 0;
+
+
+}

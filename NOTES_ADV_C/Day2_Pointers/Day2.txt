@@ -1,0 +1,206 @@
+﻿#include<stdio.h>
+int swap(int *a,int *b);  //call by reference 
+//changes made in called function(swap),
+will reflect in calling function (main)
+
+
+int main()
+{
+   int num1,num2;
+   printf("enter num1 & num2 \n");
+   scanf("%d%d",&num1,&num2); //10 20
+   printf("Before swap : %d %d \n",num1,num2);//10 20
+   printf("Before swap mem : %d %d \n\n",&num1,&num2);
+
+
+   swap(&num1,&num2);//sending address
+
+
+   printf("\nAfter swap : %d %d \n",num1,num2);
+   printf("after swap mem : %d %d \n\n",&num1,&num2);
+
+
+   return 0;
+}
+
+
+int swap(int *a,int *b) //defination
+{
+  int temp;
+  temp=*a;//10
+  *a=*b;//20
+  *b=temp;//10
+
+
+  printf("\nInside swap : %d %d \n",*a,*b); //20 10
+  printf("Inside swap mem : %d %d \n",a,b);
+
+
+}
+
+
+int num1; 
+num is a variable which is of integer datatype
+
+
+int *ptr1;
+ptr1=&num1;
+
+
+ptr is a pointer which points to address of another varaible (num1) , which is of the type integer , hence pointer is also an interger type.
+-------------------------------------------------------
+pointers -> variable which points to address of another variable
+
+
+syntax:
+datatype *ptrname; 
+
+
+int num;
+int *ptr; //declaration
+ptr = &num; //initialization 
+
+
+--------------------------------
+#include<stdio.h>
+int main()
+{
+    int num1=50;
+    int *ptr1;
+    ptr1=&num1; //address of num to pointer
+ 
+    //printf("numbers are : %d -> %d , %d -> %d\n",num1,&num1,num2,&num2);
+    //printf("Using pointers numbers are : %d -> %d , %d -> %d\n",num1,&num1,num2,&num2);
+ 
+   printf("number is : %d -> %d \n\n",num1,&num1);
+ 
+   printf("Using pointer number is : %d \n",*ptr1);
+   printf("number address : %d \n",ptr1);
+   //num1 address
+ 
+   printf("pointer address : %d \n",&ptr1);
+   //pointer address
+ 
+return 0;
+}
+---------------------------------
+#include<stdio.h>
+int main()
+{
+    int num1=50,num2=60;
+    int *ptr1,*ptr2;
+    ptr1=&num1;
+    ptr2=&num2;
+
+
+    printf("numbers are : %d -> %d , %d -> %d\n",num1,&num1,num2,&num2);
+
+
+    printf("\nUsing pointers \n");
+    printf("numbers are : %d , %d \n",*ptr1,*ptr2);
+    printf("address are : %d , %d \n",ptr1,ptr2);
+
+
+    printf("\nPointer address are : %d %d\n",&ptr1,&ptr2);
+ return 0;
+}
+============================================
+Types of Pointers in c 
+1. Integer Pointer ->   int *ptr; -> done , INCREMENT/DECREMENT
+2. Array Pointer -> done 
+3. Structure Pointer
+4. Function Pointer -> call by reference 
+5. Double Pointer 
+6. Null pointer -> done  
+7. void pointer -> done 
+8. wild pointer -> done 
+9. constant pointer 
+=========================================================
+Size of pointers 
+1. 8 bytes -> 64 bit
+2. 4 bytes -> 32 bit
+
+
+============================================================
+//* operator to access the array elements
+#include <stdio.h>
+int main()
+{
+    int num[5]={15,20,65,78,95};
+
+
+    printf("address of 1st element in an array %d\n",num);
+    printf("first element %d\n",num[0]);
+
+
+    printf("\n Using pointers values are:\n");
+    printf("first element is : %d\n",*num);//*(num+0)->num[0]
+    printf("second element is : %d\n",*(num+1));//*(num+1)->num[1]
+    printf("third element is : %d\n",*(num+2));//*(num+2)->num[2]
+    printf("Fourth element is : %d\n",*(num+3));//*(num+3)->num[3]
+
+
+    printf("\nAddress are:\n");
+    printf("first element is : %d\n",(num+0));
+    printf("second element is : %d\n",(num+1));
+    printf("third element is : %d\n",(num+2));
+    printf("fourth element is : %d\n\n",(num+3));
+
+
+printf("Fifth element is : %d -> %d\n",*(num+4),(num+4));
+ // *(num+4) -> value  , (num+4) address
+
+
+ //printf("\n %d \n",&(num+4));//error bcz its 1d array
+    return 0;
+}
+
+
+// one dimensional array is equal
+//int numbers[size] <==> *numbers
+
+
+/*Note
+int num[5]; //1d array ,num can hold address of 1st value in an array
+int *ptr;// holds an address
+
+
+1d array and single pointer are equavalent
+
+
+*/
+
+
+
+
+=======================================
+#include <stdio.h>
+
+
+int main()
+{
+    int num[5]={15,20,65,78,95};
+    int *ptr = num;
+
+
+    // *ptr=&num; when var & is must
+    //when array => & is not required
+
+
+    printf("Using arrays\n");
+    for(int i=0;i<5;i++)
+    {
+        printf("%d\n",num[i]);
+    }
+
+
+    printf("\nUsing pointers\n");
+    for(int i=0;i<5;i++)
+    {
+        printf("%d -> %d \n",*(ptr+i),(ptr+i)); //ptr[0] ==> *(ptr+0)
+    }
+
+
+    printf("Address of pointer : %d\n",&ptr);
+    return 0;
+}

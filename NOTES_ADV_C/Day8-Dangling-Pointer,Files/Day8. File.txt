@@ -1,0 +1,217 @@
+﻿file ---> permanent storage of data
+file handling --> process of dealing with the file and  its data
+
+
+2 types :
+1. low level fh --> system calls (linux)
+2. high level fh  --> by predefined function 
+
+
+operation on file 
+1. open 
+2. read/write
+3. close
+
+
+=> operations on file 
+create, 
+open, 
+read, 
+write,
+close
+
+
+=> why ?
+1. reusability -> access, update, delete 
+2. portability -> without losing a data
+3. efficient
+4. storage
+
+
+predefined function 
+
+
+  FILE *fp = fopen("file_name","mode");
+
+
+FILE ---> Predefined structure which is declared in the header file (stdio.h)
+
+
+fp --> (file pointer) holds the return value of fopen() method 
+
+
+modes:
+1. r --> open the file in read mode
+         1. if the file exists --> read the data
+         2. if the file not exists --> returns error 
+         3. if the content in file not exists ---> returns NULL
+         
+2. w --> open the file in write mode (create a file)
+         1. If the file already exists : u can write a content directly but previous content in that file will be overwritten. 
+         2. If the file doesnt exist : it will create and we can write a content 
+
+
+3. a  ---> opens the file in append mode 
+          1. if the file exists : it will appends the new data to previous one 
+          2. if file doesnt exist: it will create new file , then we can write data into it 
+
+
+4. r+ ---> open the file in read and write mode
+5. w+ ---> open the file in write and read mode
+6. a+ ---> append and read it 
+
+
+
+
+example.txt  "w"
+abcd ---> def 
+
+
+example.txt  "a"
+abcddef
+
+
+=====================================================================
+#include<stdio.h>
+
+
+int main()
+{
+   FILE *fp = fopen("D:/TEACHING/CRANES/FILES/anu.txt","w");
+
+
+   FILE *fp1 = fopen("D:/TEACHING/CRANES/FILES/kav.txt","w");
+
+
+   FILE *fp2 = fopen("D:/TEACHING/CRANES/FILES/raj.txt","w");
+    //local case
+   fclose(fp);
+    return 0;
+}
+
+
+======================================================================
+forms 
+1. text mode
+2. binary mode
+
+
+==>Text mode
+1. reading the data 
+   1. fgetc(file_pointer) ---> reading a single character from the file.
+             -->  check until EOF using while loop 
+
+
+   2. fgets(string_variable,size,file_pointer) ---> reading a multiple characters or string 
+         size=size-1
+       -->  check until NULL using while loop 
+
+
+   3.fscanf(file_pointer,f_s,va_address);
+   
+2. writing the data
+   1. fputc(var,file_pointer)
+   2. fputs(string_variable,file_pointer)
+   3. fwrite(fp,str);
+   4. fprintf(file_pointer,str,variable_list);
+
+
+==================================================
+#include <stdio.h>
+int main()
+{
+    printf("Hello world!\n");
+
+
+    FILE *fp;
+    fp = fopen("D:/TEACHING/EDFLIX technical team/2025/FILES/hari.txt","w");
+    //fputc(char,file_pointer);
+
+
+    printf("Data successfully written into file \n");
+
+
+    fputc('Bharat',fp);
+
+
+    fclose(fp);
+    return 0;
+}
+/*fputs(str,file_pointer);
+    fprintf(file_pointer,str,variabble_list);*/
+---------------------------------------------------
+#include<stdio.h>
+
+
+int main()
+{
+   FILE *fp = fopen("D:/TEACHING/CRANES/FILES/anu.txt","w");
+   //fputc(char,file_pointer);
+
+
+   printf("File is successfully created\n");
+   fputc('P',fp);
+
+
+   FILE *fp1 = fopen("D:/TEACHING/CRANES/FILES/kav.txt","w");
+   fputc('K',fp1);
+
+
+   fclose(fp);
+   fclose(fp1);
+    return 0;
+}
+----------------------------------------------
+#include<stdio.h>
+
+
+int main()
+{
+   FILE *fp = fopen("D:/TEACHING/CRANES/FILES/anu.txt","w");
+   //fputs(string_variable,file_pointer)         //mode a
+
+
+   printf("File is successfully created\n");
+   char str[]="Hello How are you ";
+   char str1[]="I am fine ";
+   fputs(str,fp);
+
+
+   fclose(fp);
+
+
+    return 0;
+}
+
+
+-------------------------------------------------
+#include <stdio.h>
+
+
+int main()
+{
+    printf("Hello world!\n");
+    FILE *fp;
+
+
+    fp = fopen("D:/C Programming (March batches)/pgdea 41/first.txt","w");
+    //fputc(char,file_pointer);
+    /* fputc('V',fp);
+   fputc('E',fp);
+   fputc('N',fp);
+   fputc('U',fp); */
+
+
+    char str[]="Ravi\n";
+    char str1[]="I am Supriya\n";
+
+
+    for(int i=0; str1[i]!='\n'; i++)
+    {
+           fputc(str1[i],fp);
+    }
+
+
+    fclose(fp);
+    return 0;
+}

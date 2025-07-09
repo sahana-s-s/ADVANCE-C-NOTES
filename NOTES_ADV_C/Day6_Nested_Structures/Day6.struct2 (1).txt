@@ -1,0 +1,239 @@
+﻿#include<stdio.h>
+//Pointer variable of type structure
+struct exm
+{
+    int num;
+    char ch;
+    short snum;
+}e1;
+
+
+int main()
+{
+    struct exm *ptr;    //declare a pointer of type structure
+    ptr = &e1;        //init a pointer
+    // struct exm *ptr = &e1;
+    //ptr is pointing to address of structure
+
+
+    ptr->num=50;
+    ptr->ch='S';
+    ptr->snum=85;
+
+
+    printf("%d %c %hd \n",ptr->num,ptr->ch,ptr->snum);
+    return 0;
+}
+
+
+--------------------------------------------------------------
+#include<stdio.h>
+struct exm
+{
+    int var;
+    char ch;
+    short shr;
+};
+
+
+int main()
+{
+    struct exm e1;
+    disp(&e1);   //call by ref
+    return 0;
+}
+
+
+int disp(struct exm *p1) //pointer
+{
+    p1->var=50;
+    p1->ch='S';
+    p1->shr=85;
+
+
+    printf("%d %c %hd \n",p1->var,p1->ch,p1->shr);
+}
+-------------------------------------------
+#include<stdio.h>
+struct exm
+{
+    int var;
+    char ch;
+    short shr;
+};
+ 
+int main()
+{
+    struct exm e1;
+    disp(&e1);//calll by ref
+    return 0;
+}
+ 
+int disp(struct exm *p1) //pointer
+{
+    struct exm *ptr;
+    ptr = &p1; //addess of p1(structure info)
+    //is given to ptr
+    //ptr is pointing to address of structure
+ 
+    ptr->var=50;
+    ptr->ch='S';
+    ptr->shr=85;
+ 
+    printf("%d %c %hd \n",ptr->var,ptr->ch,ptr->shr);
+}
+--------------------------------------
+#include<stdio.h>
+struct exm
+{
+    int var;
+    char ch;
+    short shr;
+};
+
+
+int disp(struct exm *p1);
+
+
+int main()
+{
+    struct exm e1;
+    disp(&e1);   //call by ref
+    return 0;
+}
+
+
+int disp(struct exm *p1) //pointer
+{
+    p1->var=50;
+    p1->ch='S';
+    p1->shr=85;
+
+
+    printf("%d %c %hd \n",p1->var,p1->ch,p1->shr);
+}
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+#include<stdio.h>
+struct Example1
+{
+   int a;
+};
+
+
+struct Example2
+{
+  int b;
+  char ch;
+};
+
+
+int main()
+{
+    struct Example1 e1={50};
+    struct Example2 e2={48,'l'};
+        printf("%d %d %c\n",e1.a,e2.b,e2.ch);
+        return 0;
+}
+
+
+
+
+======================================================================
+Nested structure/Embedded structure
+=============
+A structure inside another structure is known as a nested structure . 
+To access the data members of the inner structure we need to first access outer structure then we can get into the inner structure
+
+
+syntax
+===
+struct tag
+{
+        data members;
+
+
+        struct tag
+        {
+           data members
+        };
+};
+
+
+#include<stdio.h>
+struct outer
+{
+        int a;
+        struct inner
+        {
+                int b;
+                char ch;
+        }in;
+}ou={19,45,'m'};  //{19,{45,'m'}};
+
+
+int main()
+{
+        printf(" %d %d %c\n",ou.a,ou.in.b,ou.in.ch);
+        return 0;
+}
+
+
+/*ou.a;
+ou.in.b;
+ou.in.ch;*/
+===========================
+#include<stdio.h>
+struct outer
+{
+        int a;
+        struct inner
+    {
+                int b;
+                char ch;
+    }in;
+}ou;
+
+
+int main()
+{
+    ou.a=78;
+    ou.in.b=56;
+    ou.in.ch='J';
+        printf("%d %d %c\n",ou.a,ou.in.b,ou.in.ch);
+        return 0;
+}
+=====================================
+#include<stdio.h>
+#include<string.h>
+
+
+struct Employee
+{
+        int id;
+        char name[20]; // strcpy
+
+
+   struct Date
+    {
+                int dd;
+                int mm;
+                int yy;
+    }doj;
+}e1;
+
+
+int main()
+{
+    e1.id=1111;
+    strcpy(e1.name,"Supriya");
+    e1.doj.dd=25;
+    e1.doj.mm=01;
+    e1.doj.yy=2021;
+
+
+        printf("Employee id : %d\n",e1.id);
+        printf("Employee name : %s\n",e1.name);
+        printf("Employee DOJ(dd/mm/yy) : %d/%d/%d \n",e1.doj.dd,e1.doj.mm,e1.doj.yy);
+        return 0;
+}

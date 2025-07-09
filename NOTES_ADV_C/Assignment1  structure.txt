@@ -1,0 +1,33 @@
+﻿#include <stdio.h>
+
+
+struct EmployeeDetails
+{
+    int empno;// starts 101
+    char name[20];
+    char address[25];
+    char department[12]; //Finance, IT, Support, HR
+    float salary;
+}e1;
+//connect structure and main method
+//structure object => many ways
+//to access -> . operator is must
+
+
+int main()
+{
+    printf("Enter Employee_Number\n");
+    scanf("%d",&e1.empno);
+
+
+    printf("Enter Name\n");
+    scanf("%s",&e1.name);
+
+
+    printf("Employee Details are : \n");
+    printf("Empno : %d\n",e1.empno);
+    printf("Name : %s\n",e1.name);
+
+
+    return 0;
+}

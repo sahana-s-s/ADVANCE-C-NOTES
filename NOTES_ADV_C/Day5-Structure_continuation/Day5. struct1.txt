@@ -1,0 +1,300 @@
+﻿#include <stdio.h>
+//direct initialization 
+struct student
+{
+  int regno;
+  float marks;
+  char sname[20];
+
+
+}s1={101,58.9,"Rajesh"}; // type1
+
+
+struct student s2={102,50.3,"Priya"}; //type2
+
+
+int main()
+{
+   struct student s3={103,45.55,"Sahana"};//type3
+
+
+  printf("%d  %g  %s\n",s1.regno,s1.marks,s1.sname);
+
+
+  printf("%d  %g  %s\n",s2.regno,s2.marks,s2.sname);
+
+
+  printf("%d  %g  %s\n",s3.regno,s3.marks,s3.sname);
+
+
+
+
+  struct student s4; //type4
+  printf("Enter your regno, marks and name\n");
+  //scanf("%d %f %s",&regno,&marks,&sname);
+  scanf("%d %g %s",&s4.regno,&s4.marks,&s4.sname);
+
+
+  printf("%d  %g  %s\n",s4.regno,s4.marks,s4.sname);
+
+
+    return 0;
+}
+/* Note :
+float num=15.2
+%f -> 15.200000
+%g -> 15.2
+*/
+----------------------------------------------
+#include<stdio.h>
+struct student_info
+{
+   int slno;
+   char name[15];
+   int regno;
+   float marks;
+}st1={1,"Hari",101,40.5},
+ st2={2,"Bharath",102,41.0}; //type1 (within structure using object)
+
+
+struct student_info st3 = {3,"Dhivakar",103,39.5};//type2
+//(outside the structure using objects)
+
+
+int main()
+{
+   struct student_info st4 = {4,"Sapthahari",104,49.0};//type3
+   //(inside the structure using objects)
+
+
+   printf("slno is : %d\n",st1.slno);
+   printf("Name is : %s\n",st1.name);
+   printf("Regno is : %d\n",st1.regno);
+   printf("Marks is : %f\n\n",st1.marks);
+
+
+   printf("slno is : %d\n",st2.slno);
+   printf("Name is : %s\n",st2.name);
+   printf("Regno is : %d\n",st2.regno);
+   printf("Marks is : %f\n\n",st2.marks);
+
+
+   printf("slno is : %d\n",st3.slno);
+   printf("Name is : %s\n",st3.name);
+   printf("Regno is : %d\n",st3.regno);
+   printf("Marks is : %f\n\n",st3.marks);
+
+
+   printf("slno is : %d\n",st4.slno);
+   printf("Name is : %s\n",st4.name);
+   printf("Regno is : %d\n",st4.regno);
+   printf("Marks is : %f\n\n",st4.marks);
+   return 0;
+}
+-------------------------------------------------------------
+#include <stdio.h>
+
+
+struct Example
+{
+  int num;  //members
+  char alpha;  //members
+}e1; //e1 structure variable
+
+
+int main()
+{
+   struct Example e2; //structure variable
+
+
+   // to access the members in main() method ---> . operator
+
+
+   e1.num=10;
+   e1.alpha='C';
+
+
+   e2.num=50;
+   e2.alpha='K';
+
+
+   printf("%d %c\n",e1.num,e1.alpha);
+   printf("%d %c\n",e2.num,e2.alpha);
+
+
+   struct  Example e3={40,'S'};
+   printf("%d %c\n",e3.num,e3.alpha);
+
+
+    return 0;
+}
+--------------------------------------------------
+#include <stdio.h>
+
+
+struct Example
+{
+  int num;  //members
+  char alpha;  //members
+}e1,e6={500,'L'}; //s1 structure variable
+
+
+int main()
+{
+   struct Example e2,e4,e5={70,'Z'}; //structure variable;
+
+
+   // to access the members in main() method ---> . operator
+
+
+   e1.num=10;
+   e1.alpha='C';
+
+
+   e2.num=50;
+   e2.alpha='K';
+
+
+   e4.num=60;
+   e4.alpha='S';
+
+
+   printf("%d %c\n",e1.num,e1.alpha);
+   printf("%d %c\n",e2.num,e2.alpha);
+   printf("%d %c\n",e4.num,e4.alpha);
+
+
+   printf("%d %c\n",e5.num,e5.alpha);
+
+
+   struct Example e3={40,'P'};
+   printf("%d %c\n",e3.num,e3.alpha);
+
+
+   printf("%d %c\n",e6.num,e6.alpha);
+
+
+
+
+    return 0;
+}
+============================================================
+#include<stdio.h>
+#include<string.h>
+
+
+struct student
+{
+   int id;
+   char name[20];
+   char alpha;
+   int numbers[5];
+}s3={105,"Priya",'C',{40,30,55,65,78}};
+
+
+int main()
+{
+        struct student s2={102,"Mysore",'K',{20,30,45,14}};
+
+
+    struct student s1;
+        s1.id=100;
+        s1.alpha='C';
+        //s1.name="Bangalore"; // error
+        strcpy(s1.name,"Bangalore");
+        //s1.numbers={15,30,45}; error
+    strcpy(s1.numbers,"10,20,30,40,50");//issue in runtime
+
+
+        struct student s3;
+
+
+    printf("%d %s %c %d\n",s2.id,s2.name,s2.alpha,s2.numbers[0]);
+    printf("%d %s %c %d\n",s1.id,s1.name,s1.alpha,s1.numbers[2]);
+
+
+
+
+    printf("\n Enter id, name and alpha\n");
+    scanf("%d %s %c",&s3.id,&s3.name,&s3.alpha);
+    printf("%d %s %c\n",s3.id,s3.name,s3.alpha);
+
+
+        return 0;
+}
+----------------------------------------------
+//call by value:
+#include<stdio.h>
+#include<string.h>
+
+
+struct student
+{
+   int id;
+   char name[20];
+};
+
+
+int disp(struct student s1); //decl
+
+
+int main()
+{
+        struct student s1={100,"Bangalore"};   //actual argument;
+
+
+        //s1.id=100;
+        //s1.name="Bangalore"; // error
+
+
+        disp(s1); // call by value
+
+
+        return 0;
+}
+
+
+int disp(struct student s1)
+//values get collected from actual to formal argument
+{
+
+
+        printf("Disp : %d %s\n",s1.id,s1.name);
+}
+-------------------------------------------------------------
+//call by reference:
+#include<stdio.h>
+#include<string.h>
+
+
+struct student
+{
+   int id;
+   char name[20];
+};
+
+
+int disp(struct student* s1); //decl
+
+
+int main()
+{
+        struct student s1={1000,"Mysore"};   //actual argument
+
+
+        disp(&s1); // call by reference
+
+
+        return 0;
+}
+
+
+int disp(struct student* s1)
+//values get collected from actual to formal argument
+{
+
+
+        //printf("Disp : %d %s\n",s1.id,s1.name);
+        printf("Disp : %d %s\n",s1->id,s1->name);
+        // pointers are used
+}
