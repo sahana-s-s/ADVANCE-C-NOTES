@@ -1,1 +1,96 @@
+Day 1: Basics – Input/Output programmes of c and c++
+Input/Output & Variables
+
+Swap two numbers (with and without using a third variable)
+Check whether a number is even or odd
+Find the largest among three numbers
+Convert temperature between Celsius and Fahrenheit
+Calculate area and perimeter of rectangle, circle, triangle
+
+
+ 1.Swap two numbers (with and without using a third variable) in c
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+  int a,b;
+  //int temp;
+  printf("Enter the two number before swapping : \n");
+  scanf("%d %d",&a,&b);
+  printf("a=%d ,b=%d\n",a,b);
+  
+/*  
+ //logic using 3 variable temp
+ temp =a; // temp = 10
+ a=b;//a=50
+ b=temp;//b=10
+*/
+
+/*
+//logic without using 3 variable using arthamatic operator
+a = a+b ;//a=10 , b=20 updated a=30
+b = a-b ;//a=30 , b=20 updated b=10
+a = a-b ;//a=30 , b=10 updated a=20
+*/
+
+//logic without using 3 variable without using arthamatic operator
+a = a ^ b; // now a = 10 ^ 20 = 30
+b = a ^ b; // b = 30 ^ 20 = 10 (original a)
+a = a ^ b; // a = 30 ^ 10 = 20 (original b)
+
+
+printf("After swapping: \n");
+printf("a=%d ,b=%d",a,b);
+}
+
+-----------------------------------------------------------------
+
+1.Swap two numbers (with and without using a third variable) in c++
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    int a, b;
+
+    // Input from user
+    cout << "Enter two numbers before swapping:\n";
+    cin >> a >> b;
+
+    // Print values before swapping
+    cout << "Before swapping:\n";
+    cout << "a = " << a << endl;
+    cout << "b = " << b << endl;
+
+    /*
+    // Logic using 3rd variable
+    int temp = a;
+    a = b;
+    b = temp;
+    */
+
+    /*
+    // Logic without using 3rd variable (using arithmetic operators)
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    */
+
+    // Logic without using 3rd variable and without arithmetic operators
+    a = a ^ b; // a becomes a ^ b
+    b = a ^ b; // b becomes original a
+    a = a ^ b; // a becomes original b
+
+    // Print values after swapping
+    cout << "After swapping:\n";
+    cout << "a = " << a << endl;
+    cout << "b = " << b << endl;
+
+    return 0;
+}
+------------------------------------------------------------------------------------
+
 
