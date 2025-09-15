@@ -1,0 +1,199 @@
+﻿Smart Pointers:
+  it is a wrapper over a raw pointer that automatically manages memory, ensuring proper deallocation and preventing memory leaks .
+
+
+<memory> header file
+
+
+- based on template 
+
+
+types of smart pointers
+1. auto_ptr -> Deprecated -> removed
+2. unique_ptr -> fastest , cannot be copied
+3. shared_ptr -> multiple owners
+4. weak_ptr  -> observe shared_ptr safely 
+
+
+
+
+1. auto_ptr
+   #include <iostream>
+//auto_ptr
+//auto_ptr <type> name;
+
+
+#include<memory>
+using namespace std;
+
+
+int main()
+{
+    auto_ptr <int> ptr1(new int(110));
+    cout<<*ptr1<<endl; //110
+
+
+    auto_ptr <int> ptr2 = ptr1; //110
+    cout<<*ptr2<<endl;
+    return 0;
+}
+====================================================
+2. unique_ptr
+
+
+   - stores one pointer only at a time.
+   - cannot copy from one  pointer to another  
+   - can be done with move method 
+
+
+#include <iostream>
+#include<memory>
+using namespace std;
+
+
+class Rectangle
+{
+   int length;
+   int breadth;
+
+
+   public:
+    Rectangle(int l, int b)
+    {
+      length = l;
+      breadth = b;
+    }
+
+
+    int area()
+    {
+        return length*breadth;
+    }
+};
+
+
+int main()
+{
+   unique_ptr <Rectangle> ptr1(new Rectangle(10,5));
+   cout<<"Area of rectangle ptr1: "<<ptr1->area()<<endl;
+
+
+   //unique_ptr <Rectangle> ptr2 = ptr1;
+
+
+   unique_ptr <Rectangle> ptr2;
+   ptr2 = move(ptr1);
+   cout<<"Area of rectangle ptr2: "<<ptr2->area()<<endl;
+
+
+    return 0;
+}
+====================================================
+3. shared_ptr
+
+
+   - more than one pointer can point to same object at a time
+   - reference counter -> count no of pointers 
+   - use_count() 
+
+
+#include <iostream>
+#include<memory>
+using namespace std;
+
+
+class Rectangle
+{
+   int length;
+   int breadth;
+
+
+   public:
+    Rectangle(int l, int b)
+    {
+      length = l;
+      breadth = b;
+    }
+
+
+    int area()
+    {
+        return length*breadth;
+    }
+};
+
+
+int main()
+{
+   shared_ptr <Rectangle> ptr1(new Rectangle(10,5));
+   cout<<"Area of rectangle ptr1: "<<ptr1->area()<<endl;
+
+
+   shared_ptr <Rectangle> ptr2 = ptr1;
+   cout<<"Area of rectangle ptr2: "<<ptr2->area()<<endl;
+
+
+   shared_ptr <Rectangle> ptr3 = ptr1;
+   cout<<"Area of rectangle ptr3: "<<ptr3->area()<<endl;
+
+
+   cout<<"No of pointers : "<<ptr1.use_count()<<endl;
+
+
+    return 0;
+}
+===================================================
+4. weak_ptr 
+
+
+    - holds non -owing references to an object .
+    - similar to shared pointer but  it will not maintain reference counter 
+    - pointer will not have a stronghold on the object .
+
+
+
+
+#include <iostream>
+#include<memory>
+using namespace std;
+
+
+class Rectangle
+{
+   int length;
+   int breadth;
+
+
+   public:
+    Rectangle(int l, int b)
+    {
+      length = l;
+      breadth = b;
+    }
+
+
+    int area()
+    {
+        return length*breadth;
+    }
+};
+
+
+int main()
+{
+   shared_ptr <Rectangle> ptr1(new Rectangle(10,5));
+   //weak pointer
+   weak_ptr <Rectangle> ptr2(ptr1);
+
+
+   cout<<"Area of rectangle ptr1: "<<ptr1->area()<<endl;
+
+
+   //cout<<"Area of rectangle ptr2: "<<ptr2->area()<<endl;
+
+
+   cout<<"No of pointers : "<<ptr2.use_count()<<endl;
+
+
+    return 0;
+}

@@ -1,0 +1,220 @@
+﻿Templates -> blueprint 
+    will allow us to write a code that works with any data typw without rewriting it for each type
+core feature of Generic Programing.
+
+
+1. Function template 
+2. class template 
+
+
+Function template : allows you to create a function that works with any type
+
+
+template <typename T>
+T add(T a, T b)
+{
+   return a+b;
+}
+
+
+----------------------------------
+#include <iostream>
+using namespace std;
+
+
+template <typename T>  // T is a placeholder
+T add(T a, T b)
+{
+    return a+b;
+}
+//or
+template <typename Kavya>  // T is a placeholder
+Kavya add(Kavya a, Kavya b)
+{
+    return a+b;
+}
+
+
+int main()
+{
+    cout<<add(10,3)<<endl;
+    cout<<add(3,-4)<<endl;
+    cout<<add(3.5,1.2)<<endl;
+    cout<<add(string("Hello"),string("there"))<<endl;
+    cout<<add('A','B')<<endl;// k c ,107 99 = 206
+    return 0;
+}
+
+
+===========================================
+#include <iostream>
+using namespace std;
+
+
+template <typename T>  // T is a placeholder
+void swapnumbers(T &a, T &b)
+{
+   T temp = a;
+    a = b;
+    b = temp;
+}
+
+
+int main()
+{
+    int x = 10, y = 20;
+    double p = 1.5, q = 2.5;
+
+
+    cout << "Before swap: x = " << x << ", y = " << y << endl;
+    swapnumbers(x, y);
+    cout << "After swap:  x = " << x << ", y = " << y << endl;
+
+
+    cout << "\nBefore swap: p = " << p << ", q = " << q << endl;
+    swapnumbers(p, q);
+    cout << "After swap:  p = " << p << ", q = " << q << endl<<endl;
+
+
+
+
+    double a=3.1,b=5.2;
+    //int a=10,b=3;// 10 3 , 3 -4 ,
+    swapnumbers(a,b);
+    cout << "After swap:  a = " << a << ", b = " << b << endl;
+
+
+
+
+    return 0;
+}
+=====================================
+#include <iostream>
+using namespace std;
+
+
+template <typename T>  // T is a placeholder
+T maximum(T a, T b)
+{
+    return a>b? a:b;
+}
+
+
+int main()
+{
+
+
+    cout<<maximum(3,8)<<endl;
+    cout<<maximum(7.8,2.1)<<endl;
+    cout<<maximum('a','z')<<endl;//96 
+    return 0;
+}
+================================================
+//class template 
+
+
+#include <iostream>
+using namespace std;
+
+
+template <typename T>
+
+
+class Dummy
+{
+private:
+    T value; //int double....
+public:
+    Dummy(T var)
+    {
+      value = var;
+    }
+
+
+    void setvalue(T var)
+    {
+        value = var;
+    }
+
+
+    T getvalue()
+    {
+        return value;
+    }
+};
+
+
+int main()
+{
+    Dummy<int> obj(30);
+    cout<<"Integer : "<<obj.getvalue()<<endl;
+
+
+    Dummy<double> obj1(3.105);
+    cout<<"Double : "<<obj1.getvalue()<<endl;
+
+
+    Dummy<string> obj2("Rishitha");
+    cout<<"Name : "<<obj2.getvalue()<<endl;
+    return 0;
+}
+
+
+=====================================================
+#include <iostream>
+using namespace std;
+
+
+template <typename T1, typename T2>
+
+
+class Dummy
+{
+private:
+    T1 first;
+    T2 second;
+
+
+public:
+   /* Dummy(T1 a,T2 b) : first(a), second(b)
+    {
+
+
+    }*/
+
+
+    //or
+
+
+    Dummy(T1 a,T2 b)
+    {
+       first = a;
+       second = b;
+    }
+
+
+    void disp()
+    {
+        cout<<first << " === "<<second<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Dummy<int,double> obj(30,2.5);
+    obj.disp();
+
+
+    Dummy<double,int> obj1(3.105,66);
+    obj1.disp();
+
+
+    Dummy<string,int> obj2("Age",25);
+    obj2.disp();
+
+
+    return 0;
+}

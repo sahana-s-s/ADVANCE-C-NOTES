@@ -1,0 +1,207 @@
+﻿char name[15]="Bangalore";
+
+
+#include <iostream>
+using namespace std;
+//Arrays in C++
+
+
+int main()
+{
+    int arr[5]={10,20,25,30,35};
+
+
+    cout<<"Array Elements are: "<<endl;
+    for(int i=0;i<5;i++)
+    {
+        cout<<arr[i]<<endl;
+    }
+    return 0;
+}
+---------------------------
+#include <iostream>
+using namespace std;
+//Arrays in C++
+
+
+class ArrayExample
+{
+public:
+    int arr[5]={10,20,25,30,35};
+
+
+    void disp()
+    {
+       cout<<"Array Elements are: "<<endl;
+       for(int i=0;i<5;i++)
+        {
+          cout<<arr[i]<<endl;
+        }
+    }
+};
+
+
+int main()
+{
+    ArrayExample obj;
+    obj.disp();
+    return 0;
+}
+==================================
+foreach loop 
+
+
+for(datatype var_name : container_type)
+{
+
+
+}
+
+
+for(int i : arrname)
+{
+
+
+}
+
+
+#include <iostream>
+using namespace std;
+//Arrays in C++
+
+
+class ArrayExample
+{
+public:
+    int arr[5]={10,20,25,30,35};
+
+
+    void disp()
+    {
+       cout<<"Array Elements are: "<<endl;
+
+
+        //for(int i=0;i<5;i++)
+       for(int i : arr) //foreach
+        //each element from an array is given to i
+        {
+          cout<< i <<endl;
+        }
+    }
+};
+
+
+int main()
+{
+    ArrayExample obj;
+    obj.disp();
+    return 0;
+}
+=============================
+#include<iostream>
+using namespace std;
+
+
+class ArrayExample
+{
+public:
+    int arr[5]={10,20,25,30,35};
+
+
+    void disp()
+    {
+       cout<<"Array Elements are: "<<endl;
+       arr[2]=105;
+
+
+       for(int i : arr) //foreach
+        //each element from an array is given to i
+        {
+          cout<< i <<endl;
+        }
+    }
+};
+
+
+int main()
+{
+  ArrayExample obj;
+  obj.disp();
+  return 0;
+}
+
+
+=============================
+#include<iostream>
+using namespace std;
+
+
+class ArrayExample
+{
+public:
+    int arr[5];
+
+
+    void accept()
+    {
+      cout<<"enter 5 elements for an array "<<endl;
+      cin>>arr[0];
+      cin>>arr[1];
+      cin>>arr[2];
+      cin>>arr[3];
+      cin>>arr[4];
+    }
+
+
+    void disp()
+    {
+       cout<<"\nArray Elements are: "<<endl;
+
+
+       for(int i : arr) //foreach
+        //each element from an array is given to i
+        {
+          cout<< i <<endl;
+        }
+    }
+};
+
+
+int main()
+{
+  ArrayExample obj;
+  obj.accept();
+  obj.disp();
+  return 0;
+}
+
+
+===============================
+class ArrayExample
+{
+public:
+    int arr[5];
+
+
+    void accept() //declaration
+    {
+      cout<<"enter 5 elements for an array "<<endl;
+      for(int i=0;i<5;i++)
+      {
+          cin>>arr[i];
+      }
+    }
+
+
+    void disp()
+    {
+       cout<<"\nArray Elements are: "<<endl;
+
+
+       for(int i : arr) //foreach
+        //each element from an array is given to i
+        {
+          cout<< i <<endl;
+        }
+    }
+};

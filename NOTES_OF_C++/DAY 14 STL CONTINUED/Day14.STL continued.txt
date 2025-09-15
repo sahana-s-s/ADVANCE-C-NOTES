@@ -1,0 +1,496 @@
+﻿#include<algorithm>
+
+
+1. sort()
+2. find()
+3. count()
+4. pair(key,value)
+=============================================
+1) sort() -> Built in function 
+      -> used for sorting but it only works on data which provide random access to its elements such as vectors and arrays.
+
+
+sort(first,last,comp);
+first and last is compulsory
+comp is optional
+wont return any value 
+
+
+#include <iostream>
+#include<vector>
+#include<algorithm>
+
+
+using namespace std;
+
+
+int main()
+{
+    vector <int> num = {5,3,2,1,4};
+
+
+    sort(num.begin(),num.end());
+
+
+    for(int i : num)
+    {
+        cout<<i<<" ";
+    }
+
+
+    cout<<endl;
+    return 0;
+}
+
+
+------------------------------------------------------------------
+#include <iostream>
+#include<algorithm>
+
+
+using namespace std;
+
+
+int main()
+{
+    int arr[5]={5,3,2,1,4};
+
+
+    int n = sizeof(arr)/sizeof(arr[0]); //20/5
+    cout<<"value of n : "<<n<<endl;
+
+
+    sort(arr,arr+n);//ascending order
+
+
+    for(int i : arr)
+    {
+        cout<<i<<" ";
+    }
+
+
+    cout<<endl;
+    return 0;
+}
+-------------------------------
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+
+bool comp(int a, int b)
+{
+    return a>b;
+}
+
+
+int main()
+{
+    int arr[5]={5,3,2,1,4};
+
+
+    int n = sizeof(arr)/sizeof(arr[0]); //20/5
+    cout<<"value of n : "<<n<<endl;
+
+
+    sort(arr,arr+n,comp);//descending order
+
+
+    for(int i : arr)
+    {
+        cout<<i<<" ";
+    }
+
+
+    cout<<endl;
+    return 0;
+}
+
+
+=> 5 3 2 1 4
+
+
+5 3  => 5>3 ok
+3 2  => 3>2 ok
+2 1  => 2>1 ok
+1 4  => 1>4 false 
+
+
+=> 5 3 2 4 1
+=> 5 3 4 2 1
+=> 5 4 3 2 1 
+===========================================
+
+
+#include <iostream>
+#include <vector>
+#include<algorithm>
+//using user defined type
+using namespace std;
+
+
+class Example
+{
+public:
+    int a;
+    Example(int x=0) : a(x)
+        {
+
+
+        }
+
+
+};
+
+
+bool comp(Example x, Example y)
+{
+    return x.a < y.a;//ascending order
+}
+
+
+int main()
+{
+    vector <Example> num ={5,3,2,1,4};
+
+
+    sort(num.begin(),num.end(),comp);
+
+
+    for(auto i : num) //for(Example i:num)
+    {
+        cout<<i.a<<" ";
+    }
+
+
+    cout<<endl;
+    return 0;
+}
+
+
+**************************************************************
+2) find() 
+   - built in function used to find the first occurance of ana element in the given range 
+arrays, vectors,list ..
+
+
+find(first,last,val);
+val => value to be searched
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector <int> num={1,3,6,2,9};
+
+
+    auto x = find(num.begin(),num.end(),9);
+
+
+    cout<<"from beginning it is at position : "<<distance(num.begin(),x);
+    return 0;
+}
+
+
+-------------------------------
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector <int> num={1,3,6,2,9};
+
+
+    auto x = find(num.begin(),num.end(),2);
+
+
+    if(x != num.end())
+    {
+      cout<<"from beginning it is at position : "<<distance(num.begin(),x);
+    }
+
+
+    else{
+        cout<<"searched element not present!!"<<endl;
+    }
+    return 0;
+}
+------------------------------------------
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector <int> num={1,3,6,2,9};
+
+
+    auto x = find(num.begin(),num.end(),2);
+
+
+    if(x != num.end())
+    {
+      cout<<"from beginning "<<num[3]<<" is at position : "<<distance(num.begin(),x);
+    }
+
+
+    else{
+        cout<<"searched element not present!!"<<endl;
+    }
+    return 0;
+}
+================================================
+3) count()
+  - built in function
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector <int> num={2,3,2,2,9,1,5,5,4,1,3,5,5};
+
+
+    cout<<"No of times "<<num[0]<<" is repeated in vector is :"<<count(num.begin(),num.end(),2)<<endl;
+    cout<<"no of times 5 is repeated in vector is :"<<count(num.begin(),num.end(),5);
+    cout<<endl;
+    return 0;
+}
+
+
+--------------------------------------------------------------------
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector<int> num = {2, 3, 2, 2, 9, 1, 5, 2, 4, 1, 3, 5, 5,2};
+
+
+    int target1 = num[0];  // Example: element at index 0 (2)
+
+
+    // Count occurrences using count()
+    int count1 = count(num.begin(), num.end(), target1);
+
+
+    cout << "No. of times " << target1 << " is repeated in vector: " << count1 << endl;
+
+
+    cout << "It occurs at positions: ";
+    for (int i = 0; i < num.size(); i++)
+    {
+        if (num[i] == target1)
+            cout << i << " "; //index -> position
+    }
+
+
+    cout << endl;
+    return 0;
+}
+
+
+--------------------------------------------------------------------
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector<int> num = {2, 3, 2, 2, 9, 1, 5, 2, 4, 1, 3, 5, 5,2};
+
+
+    int target1 = num[0];  // Example: element at index 0 (2)
+    int target2 = 5;       // Specific number to check
+
+
+    // Count occurrences using count()
+    int count1 = count(num.begin(), num.end(), target1);
+    int count2 = count(num.begin(), num.end(), target2);
+
+
+    cout << "No. of times " << target1 << " is repeated in vector: " << count1 << endl;
+    cout << "It occurs at positions: ";
+    for (int i = 0; i < num.size(); i++) {
+        if (num[i] == target1)
+            cout << i << " ";
+    }
+
+
+    cout << "\n\nNo. of times " << target2 << " is repeated in vector: " << count2 << endl;
+    cout << "It occurs at positions: ";
+    for (int i = 0; i < num.size(); i++) {
+        if (num[i] == target2)
+            cout << i << " ";
+    }
+
+
+    cout << endl;
+    return 0;
+}
+
+
+=========================================================================
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    vector<string> names = {"Naimish","karthiga","kusuma","Naimish","Naimish","kusuma"};
+
+
+    string target1 = "Naimish"; //num[0]
+
+
+    // Count occurrences using count()
+    int count1 = count(names.begin(), names.end(), target1);
+
+
+    cout << "No. of times " << target1 << " is repeated in vector: " << count1 << endl;
+
+
+    cout << "It occurs at positions: ";
+    for (int i = 0; i < names.size(); i++) {
+        if (names[i] == target1)
+            cout << i << " ";
+    }
+
+
+    cout << endl;
+    return 0;
+}
+========================================================================
+4) pair() 
+ - used to combine together two values that may be of different data types
+
+
+pair<T1,T2> p; 
+t1-> data type of first element
+t2-> data type of second element
+p-> name of pair
+ 
+
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    pair<int,string> p1={1,"rajesh"};
+
+
+    cout<<"value is : "<<p1.first<<endl;
+    cout<<"name is : "<<p1.second<<endl;
+
+
+    return 0;
+}
+
+
+-------------------------------------
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    pair<int,string> p1; //empty pair
+    pair<int,string> p2={10,"shravani"}; //curly braces
+
+
+    //inserting values through make_pair
+    pair<int,string> p3 = make_pair(30,"pawan");
+
+
+    cout<<"value is : "<<p2.first<<endl;
+    cout<<"name is : "<<p2.second<<endl;
+
+
+    cout<<"value is : "<<p3.first<<endl;
+    cout<<"name is : "<<p3.second<<endl;
+
+
+    return 0;
+}
+
+
+---------------------------------
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    pair<int,string> p2={10,"shravani"}; //curly braces
+
+
+    cout<<"value is : "<<p2.first<<endl;
+    cout<<"name is : "<<p2.second<<endl;
+
+
+    p2.first = 50;
+    p2.second="Dennis";
+
+
+    cout<<"updated!"<<endl;
+    cout<<"value is : "<<p2.first<<endl;
+    cout<<"name is : "<<p2.second<<endl;
+
+
+    return 0;
+}
+========================================================
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+    pair<int,int> p1={3,5};//{3,8};
+    pair<int,int> p2={3,7};
+    pair<int,int> p3={2,5};
+
+
+    cout<<"p1==p2 : "<<(p1==p2)<<endl;
+
+
+    cout<<boolalpha;//true/false => without 0/1
+    cout<<"p1==p2 : "<<(p1==p2)<<endl;//3==3 5==7
+    cout<<"p1!=p3 : "<<(p1!=p3)<<endl;
+
+
+    cout<<"p1>p3 : "<<(p1>p3)<<endl;//true 3>2
+    cout<<"p1>p2 : "<<(p1>p2)<<endl;//false 3>3
+
+
+    cout<<"p1>=p2 : "<<(p1>=p2)<<endl;// 3>=3 , 5<7
+                                      // 3>=3 , 8>=7
+    return 0;
+}

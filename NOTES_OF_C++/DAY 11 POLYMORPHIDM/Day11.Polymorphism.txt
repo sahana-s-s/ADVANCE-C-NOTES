@@ -1,0 +1,741 @@
+﻿Polymorphism : 
+poly-many, morphism-forms
+Mom in multiple forms -
+child,husband,parents,cousins,siblings,friends,colleagues
+
+
+polymorphism :
+1. compile time polymorphism (datatype and no of arguments)
+    1. Function Overloading
+    2. constructor Overloading 
+    3. Operator Overloading 
+
+
+2. runtime polymorphism -> function overriding 
+    1. virtual function
+
+
+==>
+Compile time polymorphism
+1. functions are invoked by matching type and number of arguments.
+2. all the info are available at compile time , hence compiler will select appropriate function at the compile time based on the user input.
+3. early binding ==> static binding 
+
+
+==>
+Runtime polymorphism
+1. late binding ==> dynamic binding
+
+
+===========================================
+one task is performed by different ways.
+1. function overloading
+2. function overriding 
+
+
+
+
+function overloading => 2 or more functions having the same name but different parameters (number of parameters/type of parameters) 
+- can overload a 
+1. method/function
+2. constructors
+
+
+Note : return type is not considered
+int add (int a, int b) -> yes 
+
+
+float add (int a, int b) -> no 
+int add (float a, int b) -> yes
+
+
+int add (int a, float b) -> yes
+float add (int a, float b) -> no 
+-----------------------------------------------
+/*
+void disp(int,int);//2
+void disp(float,float);
+void disp(int,float);
+void disp(float,int);
+void disp(int,float,int);//3
+*/
+
+
+=====================================================
+#include <iostream>
+using namespace std;
+//function Overloading
+class Calculator
+{
+   public:
+       /*void disp(int x);
+       void disp(double x);
+       void disp(string str);
+
+
+       int disp(int,int);
+       double disp(int,double);
+       double disp(double,int);
+       double disp(double,double);*/
+
+
+      void disp(int x)
+      {
+          cout<<"X is : "<<x<<endl;
+      }
+
+
+     void disp(double y)
+      {
+          cout<<"Y is : "<<y<<endl;
+      }
+
+
+       void disp(string str)
+       {
+        cout<<"Name is : "<<str<<endl;
+
+
+       }
+
+
+       int disp(int num1,int num2)
+       {
+           cout<<"Integer Numbers are: "<<num1<<" "<<num2<<endl;
+       }
+
+
+       double disp(int n1,double d1)
+       {
+         cout<<"Numbers are: "<<n1<<" "<<d1<<endl;
+       }
+
+
+       double disp(double,int);
+       double disp(double,double);
+};
+
+
+//disp -> name of method/function
+//same function name but different set of paramaters
+//return type is not considered
+
+
+int main()
+{
+   Calculator obj;
+   obj.disp(100);
+   obj.disp(80.50);
+   obj.disp("Nandhini");
+   obj.disp(123,56.23);
+    return 0;
+}
+
+
+=====================================================
+
+
+//compile time
+//1. function overloading
+
+
+#include <iostream>
+using namespace std;
+
+
+class Calculator
+{
+  public:
+      void add(int num1,int num2)
+      {
+          int res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+      void add(int num1,float num2)
+      {
+          float res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+      void add(float num1,int num2)
+      {
+          float res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+    void add(float num1,float num2)
+      {
+          float res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+      void add(float num1,float num2,float num3)
+      {
+          float res = num1+num2+num3;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+      void add(int num1,int num2,int num3)
+      {
+          int res = num1+num2+num3;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+      float add(float num1,int num2,float num3)
+      {
+          return num1+num2+num3;
+      }
+};
+
+
+int main()
+{
+    Calculator obj;
+    obj.add(10,20);
+    obj.add(10,20.5f);
+    obj.add(10.3f,20.5f);
+    obj.add(10.3f,20);
+    obj.add(10,20,30);
+    obj.add(1.2f,3.2f,5.2f);
+
+
+    cout<<obj.add(1.1f,2,3.1f);
+    return 0;
+}
+
+
+---------------------------------------
+#include <iostream>
+using namespace std;
+
+
+int add(int a, int b)
+    {
+        return a+b;
+    }
+
+
+int add(int a, int b, int c)
+    {
+        return a+b+c;
+    }
+
+
+float add(float a,float b) //yes bcz paramter type is diff
+    {
+        return a+b;
+    }
+
+
+
+
+int main()
+{
+    cout<< "Addition is : "<<add(10,20)<<endl;
+    cout<< "Addition is : "<<add(10.5f,15.20f)<<endl;
+    cout<< "Addition is : "<<add(100,200,50)<<endl;
+    return 0;
+}
+==============================================
+#include <iostream>
+using namespace std;
+ 
+class Calculation
+{
+public:
+    int add(int a, int b)
+    {
+        return a+b;
+    }
+ 
+   /* float add(int a, int b)
+    {
+        return a+b;
+    }*/
+    //not overloaded function bcz only return type is different
+    //hence not considered
+ 
+    int add(int a, int b, int c)
+    {
+        return a+b+c;
+    }
+ 
+    float add(float a,float b) //yes bcz paramter type is diff
+    {
+        return a+b;
+    }
+};
+ 
+int main()
+{
+    Calculation obj;
+    cout<< "Addition is : "<<obj.add(10,20)<<endl;
+    cout<< "Addition is : "<<obj.add(10.5f,15.20f)<<endl;
+    cout<< "Addition is : "<<obj.add(100,200,50)<<endl;
+    return 0;
+}
+
+
+==============================
+class -> Operations
+method => print
+1 float ,1 int numbers -> add
+3 integer number => multiplication
+2 float => divi
+2 int => modulus
+1 int , 1 float => sub
+
+
+
+
+#include <iostream>
+
+
+using namespace std;
+
+
+class Operations
+{
+  public:
+
+
+    void print(float num1,int num2)
+    {
+
+
+     int res = num1+num2;
+     cout<<"addition is: "<<res<<endl;
+
+
+    }
+
+
+    void print(int num1,int num2,int num3)
+      {
+
+
+          int res = num1*num2*num3;
+          cout<<"Multiplication is: "<<res<<endl;
+      }
+
+
+      void print(float num1,float num2)
+      {
+
+
+          float res = num1/num2;
+          cout<<"division is: "<<res<<endl;
+      }
+
+
+    void print(int num1,int num2)
+      {
+
+
+          int res = num1%num2;
+          cout<<"modulus is: "<<res<<endl;
+      }
+
+
+
+
+      void print(int num1,float num2)
+      {
+
+
+          float res = num1-num2;
+          cout<<"subtraction is: "<<res<<endl;
+
+
+      }
+
+
+};
+
+
+int main()
+
+
+{
+
+
+    Operations obj;
+    obj.print(10.5f,20);
+    obj.print(10,20,30);
+    obj.print(10.2f,2.0f);
+    obj.print(10,3);
+    obj.print(10.5f,5);
+
+
+    return 0;
+
+
+}
+
+
+=================================================================
+#include <iostream>
+using namespace std;
+
+
+class Example
+{
+  public:
+       Example(int num1,int num2)
+      {
+          int res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+       Example(int num1,float num2)
+      {
+          float res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+       Example(float num1,int num2)
+      {
+          float res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+     Example(float num1,float num2)
+      {
+          float res = num1+num2;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+       Example(float num1,float num2,float num3)
+      {
+          float res = num1+num2+num3;
+          cout<<"addition is: "<<res<<endl;
+      }
+
+
+       Example(int num1,int num2,int num3)
+      {
+          int res = num1+num2+num3;
+          cout<<"addition is: "<<res<<endl;
+      }
+};
+
+
+int main()
+{
+    Example obj(10,20);
+    Example obj1(10.2f,5);
+
+
+    Example obj2(10.3f,20.5f);
+
+
+    Example obj3(10,20,30);
+    Example obj4(10.3f,18);
+    Example obj5(1.2f,5.4f,1.5f);
+
+
+  
+    return 0;
+}
+============================================================
+constructor overloading
+
+
+#include <iostream>
+
+
+using namespace std;
+
+
+class Operation
+{
+  public:
+
+
+  Operation()
+  {
+      cout<<"default cons"<<endl;
+  }
+
+
+    Operation(float num1,int num2)
+    {
+      float res = num1+num2;
+      cout<<"addition is: "<<res<<endl;
+    }
+
+
+    Operation(int num1,int num2,int num3)
+      {
+          int res = num1*num2*num3;
+          cout<<"Multiplication is: "<<res<<endl;
+      }
+
+
+    Operation(float num1,float num2)
+      {
+          float res = num1/num2;
+          cout<<"division is: "<<res<<endl;
+      }
+};
+
+
+int main()
+{
+    Operation obj;
+    Operation obj1(10.5f,20);
+    Operation obj2(10,20,30);
+
+
+    Operation obj3(10.4f,2.0f);
+    return 0;
+
+
+}
+===================
+#include <iostream>
+using namespace std;
+//function with default arguments
+void fun(int);
+void fun(int,int);
+
+
+
+
+void fun(int i)
+{
+    cout<<"value of i is : "<<i<<endl;
+}
+
+
+void fun(int a,int b=50)
+{
+    cout<<"value of a is : "<<a<<endl;
+    cout<<"value of b is : "<<b<<endl;
+}
+
+
+int main()
+{
+    fun(100);//ambuiguity
+    fun(100,20);
+    return 0;
+}
+===========================================
+//type conversion 
+#include <iostream>
+using namespace std;
+
+
+void fun(int);
+void fun(float);
+
+
+
+
+void fun(int i)
+{
+    cout<<"value of i is : "<<i<<endl;
+}
+
+
+void fun(float j)
+{
+    cout<<"value of j is : "<<j<<endl;
+}
+
+
+int main()
+{
+    fun(10);
+    fun(1.5f);
+    return 0;
+}
+
+
+==============================================
+==> 2. Operator Overloading
+
+
+cannot be overloaded:
+1. scope operator(:)
+2. sizeof
+3. memberselector (.)
+4. ternary operator(?:)
+
+
+syntax;
+return_type class_name : operator op(argument_list)
+
+
+#include <iostream>
+using namespace std;
+
+
+class Example
+{
+private:
+    int num;
+public:
+    Example()
+    {
+       num=8;
+    }
+
+
+    void operator ++()
+    {
+        num = num + 2;
+    }
+
+
+    void display()
+    {
+        cout<<"Total is : "<<num;
+    }
+
+
+};
+
+
+int main()
+{
+    Example obj;  //cons is called ,num=8
+    ++obj; //10 without initialize then =2
+    ++obj; //12
+    obj.display();
+    return 0;
+}
+================================================
+till here 
+#include <iostream>
+using namespace std;
+
+
+class Test
+{
+private:
+    int num;
+
+
+public:
+    Test() //do nothing constructor
+    {
+
+
+    }
+
+
+    Test(int i) //test(int num)
+    {
+       num = i; // or use -> this.num=num //50
+    }
+
+
+    void operator +(Test tt)
+    {
+        //int res = num + num; //60+60
+        //int res = tt.num + tt.num;//30+30
+        int res = tt.num + num; //30+60
+        // 60+30(tt.num => recent object)
+        cout<<"Addition is : "<<res<<endl;
+    }
+
+
+    void operator -(Test tt)
+    {
+        int res = num - tt.num; // 60-30(recent one)
+        cout<<"Subtraction is : "<<res<<endl;
+    }
+
+
+    void operator *(Test tt)
+    {
+        int res = num * tt.num; // 60*30(recent one)
+        cout<<"Multiplication is : "<<res<<endl;
+    }
+
+
+    void operator /(Test tt)
+    {
+        int res = num / tt.num; // 60/30(recent one)
+        cout<<"Division is : "<<res<<endl;
+    }
+};
+
+
+int main()
+{
+    Test obj1(60); // para cons
+    Test obj2(30); //para cons
+    obj1+obj2;  // 60 + 30
+    obj1-obj2;
+    obj1*obj2;
+    obj1/obj2;
+
+
+    return 0;
+}
+=========================================
+#include <iostream>
+using namespace std;
+
+
+class Test
+{
+private:
+    int num;
+
+
+public:
+    Test() //do nothing constructor
+    {
+
+
+    }
+
+
+    Test(int i) //test(int num)
+    {
+       num = i; // or use -> this.num=num //50
+    }
+
+
+    void operator >(Test tt)
+    {
+        if(num>tt.num)
+        {
+            cout<<num<<" is greater"<<endl;
+        }
+
+
+        else
+        {
+            cout<<tt.num<<" is greater"<<endl;
+        }
+    }
+
+
+};
+
+
+int main()
+{
+    Test obj1(60); // para cons
+    Test obj2(300); //para cons
+    obj1>obj2;  // 60 + 30
+
+
+    return 0;
+}

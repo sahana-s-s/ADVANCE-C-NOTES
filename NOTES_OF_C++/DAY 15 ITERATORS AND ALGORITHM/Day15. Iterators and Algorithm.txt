@@ -1,0 +1,273 @@
+﻿Iterator Basics and Algorithm 
+
+
+- An iterator is an object that acts like a pointer
+- It is used to access and traverse elements of STL containers (vector, list, set, map etc)
+- smart pointer 
+  - points to an element
+  - can be comparision
+  - obj.begin()
+  - obj.end()
+
+
+- foreach 
+- sort()
+- find()
+- count()
+- pair() ....
+
+
+Iterator Functions
+1. begin() -> returns iteartor to start 
+2. end() -> returns iteartor to end
+3. rbegin() -> reverse begin 
+4. rend() 
+5. cbegin() -> constant begin 
+6. cend() 
+
+
+#include <iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+   vector<int> v = {1,2,3,4,5};
+
+
+   auto it = find(v.begin(),v.end(),3);//iterator
+
+
+   if(it != v.end())
+   {
+       cout<<"element found at position : "<<(it-v.begin())<<endl;
+   }
+
+
+   else{
+    cout<<"element not found!!"<<endl;
+   }
+
+
+    return 0;
+}
+========================================
+#include <iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+   vector<int> v = {1,2,3,4,5};
+
+
+   auto it = find(v.begin(),v.end(),3);//iterator
+
+
+   if(it != v.end())
+   {
+       cout<<"element found at position : "<<(it-v.begin())<<endl;
+   }
+
+
+   else{
+    cout<<"element not found!!"<<endl;
+   }
+
+
+   cout<<"\n Data is revered------------------"<<endl;
+   for(auto it = v.rbegin(); it!=v.rend(); ++it)
+   {
+       cout<< *it <<endl;
+   }
+
+
+   cout<<"\n ------------------"<<endl;
+   for(auto it = v.begin(); it!=v.end(); ++it)
+   {
+       cout<< *it <<endl;
+   }
+
+
+   cout<<"\n Data is constant-----------------"<<endl;
+   for(auto it = v.cbegin(); it!=v.cend(); ++it)
+   {
+       cout<< *it <<endl;
+   }
+    return 0;
+}
+
+
+=============================================================
+Algorithm 
+
+
+#include <algorithm> header file 
+
+
+built in functions 
+sorting
+searching
+counting
+modify
+compare elements 
+
+
+
+
+
+
+1. Sorting -> sort()
+2. searching -> find() , binary_search()
+3. counting -> count()
+4. modifying -> reverse() , rotate(), fill(), replace()
+5. comparing -> min() , max(), equal() 
+
+
+-------------------------------------------------------
+reverse
+reverse(v.begin(),v.end())
+#include <iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+   vector<int> numbers = {1,2,3,4,5};
+
+
+   //find(v.begin(),v.end(),3);//iterator
+
+
+   reverse(numbers.begin(),numbers.end());
+
+
+   for(int var : numbers)
+    {
+       cout<<var<<endl;
+    }
+
+
+    return 0;
+}
+-----------------------------------------
+rotate() -> rotate(start,middle,end);
+middle -> the element that should come first after rotation 
+
+
+#include <iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+   vector<int> numbers = {10,20,30,40,50};
+
+
+   //find(v.begin(),v.end(),3);//iterator
+
+
+   rotate(numbers.begin(),numbers.begin()+3, numbers.end());
+                        //begin()+2 => 30 40 50 10 20
+                        //begin()+3 => 40 50 10 20 30
+                        //begin()+4 => 50 10 20 30 40 
+   for(int var : numbers)
+    {
+       cout<<var<<" ";
+    }
+
+
+    return 0;
+}
+---------------------------------------------
+#include <iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+   vector<int> numbers = {10,20,30,40,50};
+
+
+   //find(v.begin(),v.end(),3);//iterator
+
+
+   rotate(numbers.begin(),numbers.end()-3, numbers.end());
+                        //end()-2 => 40 50 10 20 30
+                        //end()-3=> 30 40 50 10 20
+
+
+   for(int var : numbers)
+    {
+       cout<<var<<" ";
+    }
+
+
+    return 0;
+}
+
+
+---------------------------------------------------------------------------------------------
+Mutable iterator vs Immutable (const) Iterator
+
+
+Mutable iterator -> allows reading and modifying elements whatever points to 
+  - begin(), rbegin()
+
+
+Immutable (const) Iterator -> allows to read but not allowed for modification of elements
+   - cbegin() , crbegin() 
+
+
+
+
+#include <iostream>
+#include<vector>
+#include <algorithm>
+using namespace std;
+
+
+int main()
+{
+     //begin() -> non const , const containers
+     //cbegin -> const containers
+
+
+     vector <int> v ={45,64,52};
+    auto it = v.begin(); //mutable iterator
+
+
+    cout<<"Before:";
+    for(int x : v)
+    {
+        cout<< x << " ";
+    }
+
+
+    cout<<endl;
+    *it = 10; //begin() allowed  , cbegin => not allowed
+    //*(it+2) = 10;
+
+
+    cout<<"After:";
+    for(int x : v)
+    {
+        cout<< x << " ";
+    }
+
+
+        cout<<endl;
+
+
+    return 0;
+}

@@ -1,0 +1,178 @@
+﻿SETS STL
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+
+
+
+int main()
+ {   
+    set<int> values;
+    int queries, qType, qVal; //1 2 3 
+    cin >> queries; //5
+    
+    while(queries) //5
+    {
+        cin >> qType >> qVal; // 1 10  1 20   3 10  2 10  3 10
+       
+       switch (qType) 
+         {
+            case 1:
+                values.insert(qVal);
+                break;
+
+
+            case 2:
+                values.erase(qVal);
+                break;
+
+
+            case 3:
+                if(values.find(qVal) != values.end())
+                    cout << "Yes\n";
+                else
+                    cout << "No\n";
+                break;
+        }
+        queries--;// 4 3 2 1
+    }
+   
+    return 0;
+}
+
+
+=========> 1 10  1 20  3 10  2 10  3 10
+o/p: yes
+     no
+
+
+1-> insert
+2-> delete
+3-> compare
+
+
+
+
+==> set -> empty
+ 5 inputs 
+query1 -> 1 , qval -> 10
+set = {10}
+
+
+==> 1 20
+set = {10,20}
+
+
+==> 3 10 
+10 needs to be added -> 10 is already in set 
+o/p : yes 
+
+
+==> 2 10  -> delete 10 
+set = { 10,20};
+updated set = {20}
+
+
+==> 3 10 -> compare 
+10 is present or not 
+o/p : no 
+
+
+===================================
+from hacker rank 
+
+
+set = {9 , 6 , 10, 4}
+compare 6 => yes
+compare 14 => no 
+delete 6 
+set = { 9, 10,4}
+compare 6 => no  
+
+
+
+
+================================================================================
+Maps stl
+
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+
+
+
+int main() 
+{
+    int queries;
+    cin>> queries; //7
+
+
+    map <string, int> stumark;
+
+
+    while(queries)
+    {
+        int type; 
+        string name;
+        int marks;
+
+
+        cin>>type>>name;
+
+
+       switch(type)
+         {
+            case 1: 
+                   cin>>marks;
+                   stumark[name]+= marks;
+                    break;
+ 
+            case 2:
+                   stumark.erase(name);
+                    break;
+
+
+            case 3:
+                  cout<<stumark[name]<<endl; 
+         }
+
+
+      queries--;
+    }
+    return 0;
+}
+
+
+
+
+i/p: 7
+1 Jesse 20
+1 Jess 12
+1 Jess 18
+3 Jess 
+3 Jesse
+2 Jess
+3 Jess
+
+
+1 Jesse 20 ===> {"Jesse",20}
+1 Jess 12 ===> {"Jess",12}
+1 Jess 18  ==> {"Jess",30}
+3 Jess ===>                  30
+3 Jesse ===>                 20
+2 Jess ====> erase jess 
+3 Jess =>                     0

@@ -1,0 +1,413 @@
+﻿STL -> Standard Template Library
+
+
+It is a library which contains different data structures and algorithms to store and manipulate data 
+
+
+array ->
+ arr[5]={10,20,80,45,60};
+
+
+======================================================
+1. Array 
+2. vector
+3. List 
+4. map
+5. set 
+    frequency counter with map 
+6. deque -> Assignment --> vector 
+
+
+1. sort()
+2. find()
+3. count()
+4. pair 
+============================================
+1) vector
+  - dynamic array -> grow/shrink at runtime 
+  - store elements like an array .
+  - but can dynamically change the size
+  - adding and removing of the elements usually done at end
+  - elements are accessed by index  
+
+
+#include <vector> libraries 
+#include <list>
+#include <map>
+#include <set>
+-------------------
+#include <iostream>
+#include<vector>
+
+
+using namespace std;
+
+
+/*int main()
+{
+    vector <string> cars ={"cooper","BMW","Ford"};
+
+
+    for(string var : cars)
+    {
+       cout<<var<<endl;
+    }
+    return 0;
+}*/
+
+
+int main()
+{
+    //vector <int> numbers ={10,20,30};//3
+
+
+    vector <int> numbers;
+    numbers.push_back(10);
+    numbers.push_back(20);
+    numbers.push_back(30);
+    numbers.push_back(40);
+
+
+    cout<< "size: "<<numbers.size()<<endl;//4
+
+
+    for(int i=0;i<numbers.size(); i++)
+    {
+        cout<<numbers[i]<<endl;
+    }
+    return 0;
+}
+
+
+
+
+//push_back() -> adds element to vector at end
+//pop_back() -> removes last element 
+//size()
+//clear()
+//empty()
+
+
+======================================
+#include <iostream>
+#include<vector>
+using namespace std;
+
+
+int main()
+{
+    vector <string> cars ={"cooper","BMW","Ford","Benz"};
+
+
+    for(string var : cars)
+    {
+       cout<<var<<endl;
+    }
+
+
+    cout<<"\nAt 0th index: "<<cars[0]<<endl;
+    cout<<"At 1st index: "<<cars[1]<<endl;
+
+
+    cout<<endl<<cars.front()<<endl;
+    cout<<cars.back()<<endl;
+
+
+    cout<<endl<<cars.at(1)<<endl;
+    cout<<cars.at(2)<<endl;
+    //cout<<cars.at(6)<<endl;//exception
+
+
+    /*cars[4]="i20";//error
+    cout<<cars.at(4)<<endl;*/
+
+
+   cars[1]="i20";
+   cout<<cars.at(1)<<endl;
+
+
+   cars.pop_back();
+
+
+   cout<<endl;
+   for(string var : cars)
+    {
+       cout<<var<<endl;
+    }
+    return 0;
+}
+
+
+***************************************************
+2) List 
+ similiar to vector , store multiple elements of the same type and dynamically size will grow 
+- remove or add elements from both the ends 
+- random access is supported
+
+
+#include <iostream>
+#include <list>
+using namespace std;
+
+
+int main()
+{
+    list <string> names = {"anusha","rajesh","umesh","priya","venu"};
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+    //Access of list
+
+
+    cout<<endl<<"Using inbuilt methods"<<endl;
+    cout<<names.front()<<"\n";
+    cout<<names.back()<<endl;
+
+
+    //change a list element
+    cout<<endl<<"changing list element"<<endl;
+    names.front() = "Karthiga";
+    names.back() = "shravani";
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+    //Add List elements
+    cout<<endl<<"Add list elements"<<endl;
+    names.push_front("Pooja");//begin
+    names.push_back("Swathi");//end
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+
+
+    //delete List elements
+    cout<<endl<<"Pop list elements"<<endl;
+    names.pop_front();//begin
+    names.pop_back();//end
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+
+
+    cout<<endl<<"Size of List: "<<names.size()<<endl;
+
+
+    cout<<endl<<"checks empty or not :"<<names.empty();
+    //output 0 -> not empty 
+    return 0;
+}
+
+
+==================================================
+3) Set 
+    - elements are sorted automatically in ascending order
+    - duplicate values are ignored
+    - add / remove -> value of the existing element cannot be changed 
+    - cannot be accessed by index numbers bcz the order is based on sorting and not indexing 
+ 
+#include <iostream>
+#include <set>
+using namespace std;
+
+
+int main()
+{
+    set <string> names = {"anusha","rajesh","priya","umesh","priya","venu","kavya"};
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+    cout<<endl;
+
+
+    set <int> numbers ={10,12,8,9,4,5,2,1,3,30};
+    cout<<"ascending order:"<<endl;
+    for(int num : numbers )
+    {
+      cout<< num <<endl;
+    }
+
+
+    cout<<endl;
+
+
+    set <int, greater<int>> numbers1 ={10,12,8,9,4,5,2,1,3,30};
+    cout<<"descending order:"<<endl;
+    for(int num : numbers1 )
+    {
+      cout<< num <<endl;
+    }
+
+
+    return 0;
+}
+
+
+========================================
+#include <iostream>
+#include <set>
+using namespace std;
+
+
+int main()
+{
+    set <string> names = {"anusha","rajesh","priya","umesh","priya","venu","kavya"};
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+    cout<<"\nAdding elements"<<endl;
+    names.insert("pramod");
+    names.insert("sahana");
+    names.insert("pawan");
+    names.insert("rishitha");
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+
+
+    cout<<"\n Remove elements"<<endl;
+    names.erase("pramod");
+    names.erase("sahana");
+
+
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+    cout<<"\n Remove all elements"<<endl;
+    names.clear();
+    for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+    return 0;
+}
+
+
+-----------------------------------------
+#include <iostream>
+#include <set>
+using namespace std;
+
+
+int main()
+{
+    set <string> names;
+    string str;
+    int n;
+
+
+    cout<<"enter the number of person"<<endl;
+    cin>>n;
+
+
+    cout<<"enter "<<n<<" names:"<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cin>>str;
+        names.insert(str);
+    }
+
+
+    cout<<"Names is : "<<endl;
+   for(string var : names )
+    {
+      cout<< var <<endl;
+    }
+
+
+    return 0;
+}
+
+
+*********************************************************************
+4) Map
+    - stores an element in "key/value" pairs 
+    - these are accessible by keys (not index) and each key is unique
+    - no duplicates 
+    - automatically sorted in ascending order by their keys
+   
+#include <iostream>
+#include <Map>
+using namespace std;
+
+
+int main()
+{
+    //case sensitive
+    map <string,int> people = {{"anusha",26},{"Rajesh",30},{"anusha",36},{"venu",23}};
+
+
+    cout<<"Anusha is :"<< people["anusha"]<<endl;
+    cout<<"Venu is :"<< people["venu"]<<endl;
+
+
+    cout<<"Rajesh is :"<< people.at("Rajesh")<<endl;
+
+
+
+
+    /*map <int,string> names = {{12,"john"},{5,"baby"}};
+    cout<<"name is :"<<names[12]<<endl;*/
+
+
+
+
+    //add new elements
+    people["pramod"]=32;
+    people["Dennis"]=40;
+
+
+    cout<<"pramod is :"<< people["pramod"]<<endl;
+
+
+   people.insert({"kavya",25});
+   cout<<"kavya is :"<< people["kavya"]<<endl;
+
+
+   people.insert({"pradeep",27});
+   people.insert({"pradeep",45});
+   cout<<"pradeep is :"<< people["pradeep"]<<endl;
+   //consider 1st one , key is unique
+
+
+   people.erase("Dennis");
+   people.clear(); //remove all elements
+    return 0;
+}

@@ -1,0 +1,456 @@
+﻿/*class
+ add -> 2 of float numbers
+ mul -> 3 int 
+ div -> 2 int numbers*/
+
+
+#include <iostream>
+using namespace std;
+//with parameterised constructor
+
+
+class Operation
+{
+public:
+
+
+   Operation(int i,int j) //local var
+    {
+        float res=i/j;
+        cout<<"Division is :"<<res<<endl;
+    }
+
+
+    Operation(float i, float j) //local var
+    {
+        float res = i+j;
+        cout<<"Addition is :"<<res<<endl;
+    }
+
+
+    Operation(int i,int j,int k) //local var
+    {
+        int res = i*j*k;
+        cout<<"Multiplication is :"<<res<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Operation obj1(40,20);
+    Operation obj2(40.3f,20.1f);
+    Operation obj3(2,2,6);
+    return 0;
+}
+
+
+====================================================================================
+==> Destructors -> special method () , mainly used to destroy/remove the memory of an object 
+- same as constructor with a ~ symbol in it
+- should be always after constructor only 
+- called after the complete usage of any object 
+- is called automatially
+- only 1 destructor for a class
+- no parameters are allowed 
+
+
+#include <iostream>
+using namespace std;
+
+
+class Employee
+{
+public:
+
+
+    Employee()
+    {
+        cout<<"constructor is invoked"<<endl;
+    }
+
+
+    Employee(int num)
+    {
+        cout<<"parameterized constructor is invoked"<<endl;
+    }
+
+
+    ~Employee()
+    {
+       cout<<"destructor is invoked"<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Employee obj;
+    Employee obj1;
+    Employee obj2,obj3;
+    return 0;
+}
+
+
+
+
+---------------------------------------------
+#include <iostream>
+using namespace std;
+
+
+class Employee
+{
+public:
+
+
+    Employee()
+    {
+        cout<<"constructor is invoked"<<endl;
+    }
+
+
+
+
+    Employee(int num)
+    {
+        cout<<"Parameterized constructor is invoked with a value of "<<num<<endl;
+    }
+
+
+    ~Employee()
+    {
+       cout<<"destructor is invoked"<<endl;
+    }
+
+
+    void disp()
+    {
+        cout<<"JaiShankar"<<endl;
+        cout<<"Vamshi"<<endl;
+        cout<<"Vignesh"<<endl;
+        cout<<"Reshma"<<endl<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Employee obj;
+    Employee obj1;
+
+
+    obj.disp();
+    obj.disp();
+    obj.disp();
+    obj.disp();
+
+
+    Employee obj2(50);//para constructor
+
+
+    return 0;
+}
+==========================================================
+#include <iostream>
+using namespace std;
+//this pointer
+
+
+class Employee
+{
+public:
+
+
+    int id;
+    string name;
+    float salary; //instance variable
+    //outside of the class & outside the function
+
+
+   /*Employee(int i, string str,float fsal) //local var
+    {
+        id = i;
+        name = str;
+        salary = fsal;
+    }*/
+
+
+    Employee(int id, string name,float salary) //local var
+    {
+        this->id = id;
+        this->name = name;
+        this->salary = salary;
+        
+        //local & instance variable names can be same now 
+    }
+
+
+    void disp()
+    {
+        cout<<id<<" "<<name<<" "<<salary<<endl;
+    }
+};
+
+
+int main()
+{
+    Employee obj(100,"Reshma",40000);
+    obj.disp();
+
+
+    Employee obj1(101,"vamshi",30000);
+    obj1.disp();
+    return 0;
+}
+==========================================================
+==> Static 
+
+
+- dont initialize inside class 
+
+
+#include <iostream>
+using namespace std;
+//static
+
+
+class Account
+{
+public:
+
+
+    int accno; //instance variable -> inside the class and outside method
+    string name;
+    //static float roi=8.5; //not allowed
+    static float roi;
+    int num=10;
+
+
+    Account(int accno, string name) //local var
+    {
+        this->accno = accno;
+        this->name = name;
+    }
+
+
+    void disp()
+    {
+        roi++;
+        num++; //11
+        cout<<accno<<" "<<name<<" "<<roi<<" "<<num<<endl;
+    }
+};
+
+
+//initailize static var using scope resolution ==> ::
+float Account :: roi = 8.5;
+
+
+int main()
+{
+    Account a1 = Account(100,"Jai");
+    Account a2 = Account(101,"Kav");
+    a1.disp();//8.5
+    a2.disp();
+
+
+    Account a3(102,"sahana");
+    a3.disp();
+
+
+    return 0;
+}
+
+
+==================================
+#include<iostream>
+ 
+using namespace std;
+ 
+class ProjectDetail{
+public:
+    string projname;
+    string projlang;
+    int no_of_lines;
+    string final_date;
+ 
+    ProjectDetail(string name, string lang, int lines, string date)
+    {
+        projname=name;
+        projlang=lang;
+        no_of_lines=lines;
+        final_date=date;
+ 
+    }
+ 
+    void disp()
+    {
+        cout<<"Project name: "<<projname<<endl;
+        cout<<"Project language: "<<projlang<<endl;
+        cout<<"Number of lines: "<<no_of_lines<<endl;
+        cout<<"Submission date: "<<final_date<<endl;
+        cout<<endl<<endl;
+ 
+    }
+ 
+    ~ProjectDetail()
+    {
+ 
+    }
+ 
+};
+ 
+int main()
+{
+    ProjectDetail obj1("Hotel Management", "C", 100, "14/07/2025");
+    obj1.disp();
+    ProjectDetail obj2("Library Management", "CPP", 200, "15/07/2025");
+    obj1.disp();
+    ProjectDetail obj3("Hotel Management", "JAVA", 300, "16/07/2025");
+    obj3.disp();
+    ProjectDetail obj4("Hotel Management", "CPP", 400, "17/07/2025");
+    obj4.disp();
+ 
+ 
+    return 0;
+}
+
+
+=========================================================
+//copy constructor
+#include <iostream>
+#include<string.h>
+using namespace std;
+
+
+class student
+{
+    int rno;
+    string name;
+    double fee;
+
+
+public:
+   student(int no,string na,double fe);//para const
+
+
+   //copy constructor
+   student(student &obj) //input as object stu2
+   {
+      rno = obj.rno;
+      name = obj.name;
+      fee = obj.fee;
+      cout<<"copy constructor is called"<<endl;
+   }
+
+
+   void display();
+};
+
+
+student :: student(int no ,string na ,double fe)
+{
+    rno = no;
+    name = na;
+    fee = fe;
+}
+
+
+void student :: display()
+{
+    cout<<rno<<"\t"<<name<<"\t"<<fee<<endl;
+}
+
+
+int main()
+{
+    student stu1(101,"Umesh",50000);
+    stu1.display();
+
+
+    student stu2(102,"venu",30000);
+    stu2.display();
+
+
+    student stu3(103,"swathi",54000);
+    stu3.display();
+
+
+    student prateek(stu1); //data from stu2 is copied to prateek
+    prateek.display();
+
+
+    student kav = stu2; //2nd way
+    kav.display();
+    return 0;
+}
+
+
+/*
+1. when an object itself is passed as an value to the function
+2. object itself will be returned as the value
+*/
+==================================
+#include <iostream>
+#include<string.h>
+using namespace std;
+
+
+class Addition
+{
+    int num1;
+    int num2;
+
+
+public:
+   Addition(int n1,int n2);//para const
+
+
+   //copy constructor
+   Addition(Addition &obj)
+   {
+      num1=obj.num1;
+      num2=obj.num2;
+      cout<<"\ncopy constructor is called"<<endl;
+   }
+
+
+   void display();
+};
+
+
+Addition::Addition(int n1,int n2)
+{
+    num1 = n1;
+    num2 = n2;
+}
+
+
+void Addition :: display()
+{
+    cout<<"Numbers are : "<<num1<<" "<<num2<<endl;
+    cout<<"Addition is : "<<num1+num2<<endl<<endl;
+}
+
+
+int main()
+{
+    Addition ad(10,20);
+    ad.display();
+
+
+    Addition ad1(15,16);
+    ad1.display();
+
+
+    Addition kav(ad1); //data from stu1 is copied to kav
+    kav.display();
+    return 0;
+}

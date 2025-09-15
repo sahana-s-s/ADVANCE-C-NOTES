@@ -1,0 +1,199 @@
+﻿Encapsulation 
+  it is binding(wrapping) of data and functions both operate on single unit (class)
+
+
+why?
+1. data is safe and it will hide the internal details from the outside access.
+2. allow you to access the data through getter & setters 
+
+
+#include <iostream>
+using namespace std;
+
+
+class Person
+{
+private:
+  string name;
+
+
+public:
+    void setName(string n)
+    {
+        name = n;
+    }
+
+
+   string getName()
+    {
+       return name;
+    }
+};
+
+
+
+
+int main()
+{
+    Person obj;
+    //obj.name="Kavya";
+
+
+    obj.setName("umesh");
+    cout<<"Name is : "<<obj.getName()<<endl;
+    return 0;
+}
+===========================================================
+#include <iostream>
+using namespace std;
+
+
+class Person
+{
+private:
+  string name;
+  int age;
+
+
+public:
+    void setName(string n)
+    {
+        name = n;
+    }
+
+
+    void setAge(int a)
+    {
+       if(a>0)
+       {
+           age = a;
+       }
+       else{
+          cout<<"Invalid age!!"<<endl;
+       }
+    }
+
+
+
+
+
+
+    string getName()
+    {
+       return name;
+    }
+
+
+
+
+    int getAge()
+    {
+        return age;
+    }
+};
+
+
+
+
+int main()
+{
+    Person obj;
+    //obj.name="Kavya";
+
+
+    obj.setName("Shravani");
+    obj.setAge(25);
+    cout<<"Name is : "<<obj.getName()<<endl;
+    cout<<"Age is : "<<obj.getAge()<<endl;
+    return 0;
+}
+---------------------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+
+class BankAccount
+{
+private:
+  string accountHolder;
+  double balance;
+
+
+public:
+    void setAccountHolder(string name)
+    {
+        accountHolder = name;
+    }
+
+
+    void deposit(double amount)
+    {
+        if(amount>0)
+        {
+            balance = balance + amount;//0+2000=2000
+            cout<<"Deposited : Rs. "<<amount<<endl;
+        }
+
+
+        else{
+            cout<<"Invalid deposit amount"<<endl;
+        }
+    }
+
+
+
+
+    void withdraw(double amount) //500
+    {
+       if(amount>0 && amount <=balance) //500>0  , 500<=2000
+       {
+           balance = balance - amount;
+
+
+           cout<<"Withdraw amount : Rs. "<<amount <<endl;
+       }
+
+
+       else{
+        cout<<"Insufficient balance!!"<<endl;
+       }
+    }
+
+
+
+
+
+
+    string getAccountHolder()
+    {
+       return accountHolder;
+    }
+
+
+
+
+    double getBalance()
+    {
+        return balance;
+    }
+};
+
+
+
+
+int main()
+{
+    BankAccount obj;
+    obj.setAccountHolder("Lisha");
+    cout<<"Account Holder : "<<obj.getAccountHolder()<<endl;
+
+
+    obj.deposit(2000);
+    obj.withdraw(10);
+
+
+    cout<<"Current Balance : Rs. "<<obj.getBalance()<<endl;
+
+
+    return 0;
+}

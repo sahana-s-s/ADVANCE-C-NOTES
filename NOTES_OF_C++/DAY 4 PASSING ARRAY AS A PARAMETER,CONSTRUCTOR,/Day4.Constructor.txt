@@ -1,0 +1,276 @@
+﻿oops -> OBJECT ORIENTED PROGRAMMING  
+1. Class
+2. Object
+3. Constructors -> types 
+4. Destructors 
+5. this 
+6. static
+
+
+this -> this keyword is a pointer which refers to current object(local var) of a class. 
+
+
+Pillars of OOPs 
+1. Inheritance => parent-child relationship
+2. Polymorphism => poly-many, morphism-forms
+3. Encapsulation
+4. Abstraction
+
+
+
+
+==========================================================================
+==> Constructor : it is a special method, which has same name as of class name.
+- it is automatically invoked when object is created 
+- it is mainly used to initialize the variables
+- each time a new object is created -> constructor will be called automatically 
+- no return type , not even void...
+
+
+types of constructor
+1. Default constructor -> no arguments/parameters -> invoked by object(when object is created) 
+2. Parameterized constructor
+
+
+Note: If no constructor then by creating object , automatically compiler will write a default constructor
+
+
+#include <iostream>
+using namespace std;
+//passing array to an function
+
+
+class ArrayExample
+{
+  public:
+    ArrayExample() //default constructor/Do Nothing constructor
+    {
+       cout<<"constructor invoked!!"<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    ArrayExample obj;
+    ArrayExample obj1,obj2,obj3;
+
+
+    return 0;
+}
+
+
+===============================
+#include <iostream>
+using namespace std;
+//passing array to an function
+
+
+class ArrayExample
+{
+  public:
+    ArrayExample() //default constructor/Do Nothing constructor
+    {
+       cout<<"constructor invoked!!"<<endl;
+    }
+
+
+    ArrayExample(int num)
+    {
+       cout<<"Parameterized constructor invoked!!"<<endl;
+    }
+};
+
+
+int main()
+{
+    ArrayExample obj;
+    ArrayExample obj1,obj2,obj3(10);
+
+
+    return 0;
+}
+================================================
+#include <iostream>
+using namespace std;
+
+
+class Example
+{
+  public:
+      int num1,num2,num3;
+
+
+      Example() //contructor should have same name as class
+      {
+          //initialization purpose
+          num1=10;
+          num2=50;
+          num3=0;
+          cout<<"Constructor invoked!!"<<endl;
+      }
+
+
+      void print()
+      {
+          num1++;
+          num2++;
+          cout<<"Num is : "<<num1<<" "<<num2<<endl;
+      }
+};
+
+
+
+
+int main()
+{
+    Example obj; //default constructor is called
+    //when object is created then constructor are automatically called
+    obj.print();
+
+
+    Example obj1;
+    Example obj2;
+    Example obj3;
+    Example obj4,obj5;
+    obj5.print();
+    return 0;
+}
+ 
+============================================
+#include <iostream>
+using namespace std;
+
+
+class Person
+{
+  public:
+      string name;
+      int age;
+
+
+      Person()
+      {
+          cout<<"constructor"<<endl;
+          name="Venu";
+          age=25;
+      }
+
+
+      void disp()
+      {
+          cout<<name<<" "<<age<<endl;
+      }
+};
+
+
+
+
+int main()
+{
+    Person obj;
+    obj.disp();
+
+
+    return 0;
+}
+=====================================================
+#include <iostream>
+using namespace std;
+
+
+class Person
+{
+  public:
+      string name;
+      int age;
+
+
+     /* Person(string n1,int a)
+      {
+          cout<<"para constructor"<<endl;
+          name = n1;
+          age = a;
+      }
+      */
+
+
+      Person(string name,int age)
+      {
+          //name = name;//if instance and loca var are same
+          //age = age;// then its an issue
+          //to avoid we have use this keyword
+
+
+          this->name = name; //this keyword -> local var
+          this->age = age;
+      }
+
+
+
+
+      void disp()
+      {
+          cout<<name<<" "<<age<<endl;
+      }
+};
+
+
+
+
+int main()
+{
+    Person obj("Rajesh",30);
+    obj.disp();
+
+
+    return 0;
+}
+========================================================
+#include <iostream>
+using namespace std;
+
+
+class Person
+{
+  public:
+      string name;
+      int age;
+      Person(string,int); //declaration is must
+      void disp();
+};
+
+
+Person :: Person(string name,int age) //scope resolution operator
+{
+   this->name = name; //this keyword -> local var
+   this->age = age;
+}
+
+
+void Person :: disp()
+{
+   cout<<name<<" "<<age<<endl;
+}
+
+
+/*
+syntax:
+return_type classname :: method/constructor name
+{
+
+
+}
+*/
+
+
+int main()
+{
+    Person obj("Rajesh",30);
+    obj.disp();
+
+
+    return 0;
+}

@@ -1,0 +1,112 @@
+﻿Abstraction:
+
+
+It hides internal details and shows only essential information
+
+
+example : Tv remote , ATM 
+
+
+1) Access Modifiers : private, protected, public
+2) Abstract Classes : using pure virtual functions 
+
+
+#include<iostream>
+//Access specifiers
+using namespace std;
+
+
+class Car
+{
+private:
+    int speed; //hidden details
+
+
+public:
+    void start()
+    {
+        cout<<"Car started!!"<<endl;
+    }
+};
+
+
+int main()
+{
+   Car obj;
+   //obj.speed=100;
+   obj.start();
+   return 0;
+}
+
+
+=================================================
+Abstract classes 
+   Is created using a pure virtual function.
+ 
+1. cannot be called using objects 
+2. A class should have atleast one pure virtual function 
+
+
+#include<iostream>
+//Access specifiers
+using namespace std;
+
+
+class Animal  //abstract class -> pure virtual function
+{
+    //void sound(); //declared
+    virtual void sound()= 0; //pure virtual
+
+
+    //virtual void sound(); //only declaration
+    //overriding -> same method name, same parameters
+
+
+    /*public:
+    void sound()
+    {
+        cout<<"Animal make sound!!!"<<endl;
+    }*/
+};
+
+
+class Dog : public Animal
+{
+public:
+   void sound()
+   {
+       cout<<"Barks!!"<<endl;
+   }
+};
+
+
+class Cat : public Animal
+{
+ public:
+   void sound()
+   {
+       cout<<"Meows!!"<<endl;
+   }
+};
+
+
+
+
+int main()
+{
+    /*Animal obj;
+    obj.sound();*/
+
+
+    Dog d;
+    d.sound();
+
+
+    Cat c;
+    c.sound();
+
+
+
+
+   return 0;
+}

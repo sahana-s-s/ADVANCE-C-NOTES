@@ -1,0 +1,1145 @@
+﻿Exception Handling
+
+
+handle runtime errors 
+it stops the normal flow of execution 
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    int num1=12;
+    int num2=0;
+
+
+    cout<<(num1/num2)<<endl;
+    cout<<"Hello";
+    return 0;
+}
+
+
+it is stopping, hello to be printed on screen bcz exception is not handled 
+----------------------------------------------------------------------------
+Exception -> class name
+
+
+it is an unexpected problem that arises during the execution of a program which terminates suddenly with some errors/issues.
+
+
+try block -> it is used to keep a code in which exception occurs 
+          -> block that contains code which may throw an exception
+    try
+     {
+
+
+     }
+
+
+catch -> used to handle the exceptions
+       catch(exception obj)
+         {
+
+
+         } 
+
+
+throw -> 
+
+
+---------------------------------------------------
+#include <iostream>
+#include<stdexcept>
+
+
+using namespace std;
+int main()
+{
+    int num1=12;
+    int num2=0;//2 10
+
+
+    try
+    {
+        cout<<"Good evening"<<endl;
+
+
+        if(num2==0)
+        {
+            throw runtime_error("Divide by zero error!!");
+        }
+
+
+        int res = num1/num2;
+        cout<<"division is : "<<res<<endl;
+    }
+
+
+    catch(exception &obj)
+    {
+      cout<<obj.what()<<endl;
+    }
+
+
+    cout<<"Hello";
+    return 0;
+}
+
+
+-----------------------------------------------------------
+Synchronous -> can be handled 
+Asynchronous -> keyboard interrupts, disc failures 
+
+
+types of exception:
+1. predefined
+2. user-defined 
+
+
+-------------------------------------------------------------
+User-Defined Exceptions:
+
+
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+class Example : public exception //inheritance
+{
+  public:
+    const char* what() const throw() // indicates that method throws an error
+      {
+          return "Divide by zero error";
+      }
+};
+
+
+int main()
+{
+    try
+    {
+      int num1,num2;
+    cout<<"enter the values of num1 and num2:\n";
+    cin>>num1>>num2;
+
+
+       if(num2==0)
+       {
+           Example eobj;
+           throw eobj; //refer here to catch
+       }
+
+
+        else{
+           cout<<"num1/num2 = "<<num1/num2<<endl;
+          }
+     }
+
+
+     catch(exception &e)
+     {
+        cout<<e.what();
+     }
+
+
+     cout<<"\nBye!!"<<endl;
+    return 0;
+}
+-------------------------------------------------
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+      int age = 26;
+      if(age>=18)
+      {
+          cout<<"eligible for voting!!"<<endl;
+      }
+      else{
+        throw(age); //caught in catch block
+      }
+    }
+
+
+    catch(int myNum)
+    {
+        cout<<"you dont have access bcz u should be more than 18"<<endl;
+        cout<<"Age is :"<<myNum<<endl;
+    }
+    
+    return 0;
+}
+============================================
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+      int age = 16;
+      if(age>=18)
+      {
+          cout<<"eligible for voting!!"<<endl;
+      }
+
+
+      else
+      {
+        throw 504; //caught in catch block
+      }
+    }
+
+
+    catch(int myNum)
+    {
+        cout<<"you dont have access bcz u should be more than 18yrz"<<endl;
+        cout<<"Error Number :"<<myNum<<endl;
+    }
+
+
+    return 0;
+}
+============================================
+#include<iostream>
+ 
+#include<exception>
+ 
+using namespace std;
+ 
+int main()
+ 
+{
+ 
+    try
+ 
+    {
+ 
+      float cgpa = 6.6;
+ 
+      if(cgpa >= 7.5 && cgpa <= 10.0)
+ 
+      {
+ 
+          cout<<"eligible for attending interview!!"<<endl;
+ 
+      }
+ 
+      else{
+ 
+        throw (cgpa);
+ 
+      }
+ 
+    }
+ 
+    catch(float myNum)
+ 
+    {
+ 
+        cout<<"you can't attend the interview"<<endl;
+ 
+        cout<<"your cgpa :"<<myNum<<endl;
+ 
+    }
+ 
+    return 0;
+ 
+}
+===============================================
+#include <iostream>
+#include <exception>
+using namespace std;
+ 
+int main()
+{
+   try
+   {
+      int marks = 5; // out of 100
+      if (marks > 35)
+      {
+         cout << "Eligible for Final Examination!";
+      }
+      else
+      {
+         throw marks;
+      }
+   }
+   catch (int marks)
+   {
+      cout << "Not eligible for Final Exams!" << endl;
+      cout << "Since your marks are less than 35 that is: " << marks << endl;
+      cout << " visit the examination centre"
+   }
+ 
+   return 0;
+}
+======================================================
+#include<iostream>
+#include<stdexcept>
+using namespace std;
+
+
+int main()
+{
+    int balance = 5000;
+    int withdraw = 10000;
+
+
+    try
+    {
+        if(withdraw>balance)
+        {
+            throw runtime_error("Withdrawal amount exceeds balance");
+        }
+        else
+        {
+            balance = balance - withdraw;
+            cout << "Withdrawal successful!" << endl;
+            cout << " balance: " << balance << endl;
+        }
+    }
+    catch(exception &obj)
+    {
+        cout << "Transaction Error: " << obj.what() << endl;
+    }
+
+
+    return 0;
+}
+===============================================
+#include<iostream>
+#include<stdexcept>
+
+
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+      int weight;
+      cout<<"enter Your weight"<<endl;
+      cin>>weight;
+
+
+     if(weight<=70)
+       {
+        cout<<"\n"<<"you can play "<<endl;
+       }
+
+
+      else
+       {
+           throw(weight);
+       }
+
+
+    }
+
+
+
+
+    catch(int n)
+    {
+      cout<<"you can't play "<<endl;
+      cout<<"because ur weight:"<<n<<endl;
+    }
+    return 0;
+
+
+}
+
+
+==============================================
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+int main()
+{
+
+
+    int speed = 170;
+    try
+    {
+      int speed_limit = 120;
+      if(speed>=speed_limit)
+      {
+          cout<<"Fine of Rs. 5000"<<endl;
+      }
+      else{
+        throw(speed); //caught in catch block
+      }
+    }
+
+
+    catch(int mySpeed)
+    {
+        cout<<"you are perfectly following the rules"<<endl;
+        cout<<"Speed is :"<<mySpeed<<endl;
+    }
+    return 0;
+}
+===================================================
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+        int expense= 999;
+
+
+        if(expense>=1000)
+        {
+            cout<<"exceeding budget!!"<<endl;
+        }
+
+
+        else
+        {
+            throw (expense);
+        }
+
+
+    }
+    catch(int balOne)
+        {
+            cout<<" you cannot make this transaction"<<endl;
+            cout<<"low balance :"<<balOne<<endl;
+       }
+return 0;
+}
+==================================================
+#include<iostream>
+#include<exception>
+using namespace std;
+ 
+int main()
+{
+    try
+    {
+        int temperature = 105;
+ 
+        if(temperature <= 100)
+        {
+            cout << "Machine is operating within safe temperature." << endl;
+        }
+        else
+        {
+            throw 101; 
+        }
+    }
+ 
+    catch(int errorCode)
+    {
+        cout << "Warning: Overheating detected!" << endl;
+        cout << "Error Code: " << errorCode << endl;
+    }
+ 
+    return 0;
+}
+=====================================================
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+      int age = 16;
+      if(age>=18)
+      {
+          cout<<"eligible for voting!!"<<endl;
+      }
+
+
+      else
+      {
+        throw 504; //caught in catch block
+      }
+    }
+
+
+    catch(...)
+    {
+        cout<<"you dont have access bcz u should be more than 18yrz"<<endl;
+    }
+
+
+    return 0;
+}
+---------------------------------------------------
+Note:
+
+
+1. catch is mandatory , when try is there
+2. one try block for whole prgm 
+3. multiple catch block is allowed , it should be after try
+   try
+    {
+
+
+    }
+
+
+   catch(exception1)
+   {  }
+
+
+   catch(exception2)
+   {  }
+
+
+   catch(exception3)
+   {  }
+
+
+#include<iostream>
+#include<exception>
+using namespace std;
+
+
+int main()
+{
+    double num,den;
+
+
+   try
+   {
+      cout<<"Enter the numbers:"<<endl;
+      cin>>num>>den;
+
+
+       if(den==0)
+        {
+           //throw "bye retry"; //catch block 1
+            //throw 120; //catch block2
+            throw 2.5; //last catch block
+        }
+
+
+        else
+        {
+            cout<<"output is : "<<num/den<<endl;
+        }
+   }
+
+
+   catch(const char* msg)
+   {
+       cout<<msg<<endl;
+   }
+
+
+    catch(int num)
+    {
+      cout<<"Error : Divide by zero : "<<num<<endl;
+    }
+
+
+    catch(...)
+    {
+      cout<<"Unexpected exception!!"<<endl;
+    }
+
+
+    return 0;
+}
+
+
+
+
+===================================================
+Nested try-catch Block 
+
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+        //nesting try & catch
+        try
+        {
+          //throw 20; //indicates that from try block
+          //we are sending an exception to catch
+
+
+          throw 20.5; //calling float
+        }
+
+
+        catch(int num)
+        {
+            cout<<"handled partially by throwing num : "<<num<<endl;
+           throw;//re-throwing an exception
+        }
+
+
+        catch(double fnum)
+        {
+            cout<<"Bye"<<endl;
+            throw;
+        }
+
+
+    }
+
+
+    catch(int num)
+    {
+       cout<<"Handling remaining exceptions"<<endl;
+    }
+
+
+    catch(double fnum)
+    {
+       cout<<"Handling double remaining exceptions"<<endl;
+    }
+
+
+    return 0;
+}
+
+
+=====================================
+#include <iostream>
+using namespace std;
+
+
+class Test
+{
+public:
+   Test()
+   {
+      cout<<"Constructor called()"<<endl;
+   }
+
+
+   void disp()
+    {
+    cout<<"take care"<<endl;
+    }
+
+
+   ~Test()
+   {
+      cout<<"Destructor called()"<<endl;
+   }
+};
+
+
+int main()
+{
+    try
+    {
+        Test obj;
+        obj.disp();
+        throw 10;//since object was not used further , call
+        //destructor first and then go to catch block
+
+
+        cout<<"bye"<<endl;
+        obj.disp();  //never be called
+    }
+
+
+    catch(int num)
+    {
+       cout<<"Exception Caught!! with a value : "<<num<<endl;
+    }
+
+
+    return 0;
+}
+
+
+===========================================================
+#include <iostream>
+using namespace std;
+
+
+
+
+int main()
+{
+    try
+    {
+      int numbers[5]={10,20,30,40,50};
+
+
+      /*for(int i=0;i<5;i++)
+      {
+          cout<<numbers[i]<<endl;
+      }*/
+
+
+       numbers[5]=100;
+    }
+
+
+    catch(int num)
+    {
+      cout<<"array error"<<endl;
+    }
+
+
+    return 0;
+}
+==============================================
+standard exception 
+
+
+1. std::exception -> base class for all standard exceptions 
+
+
+    std::logic error  -> detected before runtime 
+      std::invalid_argument
+      std::out_of_error
+      std::length_error
+
+
+    std::runtime_error  -> during program execution 
+        std::overflow_error
+        std::underflow_error
+        std::range_error
+============================================
+#include <iostream>
+#include<stdexcept>
+#include<cmath>
+
+
+using namespace std;
+
+
+void squareRoot(int num)
+{
+    if(num<0)
+        throw invalid_argument("Negative number not allowed!!");
+
+
+
+
+    cout<<"Square Root: "<<sqrt(num)<<endl;
+}
+
+
+int main()
+{
+    try
+    {
+      squareRoot(-625);
+    }
+
+
+    catch(const invalid_argument &obj)
+    {
+      cout<<"Caught exception : "<<obj.what()<<endl;
+    }
+
+
+    return 0;
+}
+===========================================
+#include <iostream>
+#include<stdexcept>
+#include<vector>
+using namespace std;
+
+
+int main()
+{
+    try
+    {
+      vector<int> numbers = {10,20,30,40,50};
+
+
+      numbers.at(5)=560;
+    }
+
+
+    catch(const out_of_range &obj)
+    {
+      cout<<"Caught exception : "<<obj.what()<<endl;
+    }
+
+
+    return 0;
+}
+
+
+
+
+==========================================================================
+Namespaces 
+
+
+used to organise too many classes so that it can be handle very easily in the application.
+
+
+namespace::classname
+using keyword is must 
+
+
+#include<iostream>
+//using namespace std;
+
+
+int main()
+{
+    //cout<<"Hello"<<endl;
+    std::cout<<"Hello"<<std::endl;
+    return 0;
+}
+
+
+===================
+#include<iostream>
+using namespace std;
+
+
+namespace Prathap
+{
+  void print()
+  {
+      cout<<"Hello i am Prathap"<<endl;
+  }
+}
+
+
+namespace Senthil
+{
+  void disp()
+  {
+      cout<<"I am too brilliant"<<endl;
+  }
+}
+
+
+int main()
+{
+    Prathap::print();
+    Senthil::disp();
+    return 0;
+}
+
+
+================================
+#include<iostream>
+using namespace std;
+
+
+namespace Vamshi
+{
+  void print()
+  {
+      cout<<"Hello i am vamshi"<<endl;
+  }
+}
+
+
+namespace Reshma
+{
+  void print()
+  {
+      cout<<"Hello i am reshma"<<endl;
+  }
+}
+
+
+int main()
+{
+    Vamshi::print(); //without using keyword
+    Reshma::print();
+
+
+
+
+    return 0;
+}
+====================================
+#include<iostream>
+using namespace std;
+
+
+namespace Vamshi
+{
+  void print()
+  {
+      cout<<"Hello i am vamshi"<<endl;
+  }
+}
+
+
+namespace Reshma
+{
+  void print()
+  {
+      cout<<"Hello i am reshma"<<endl;
+  }
+}
+
+
+using namespace Vamshi;
+using namespace Reshma;
+//since both the namespace are having same method name, 
+//call one at a time 
+int main()
+{
+    //Vamshi::print(); //without using keyword
+    //Reshma::print();  
+    
+    //Reshma::disp();//if disp();
+
+
+    print();//can change method name to avoid error
+    //disp();
+    return 0;
+}
+==============================
+#include<iostream>
+using namespace std;
+
+
+namespace Calculation
+{
+    int a=10;
+    int b=20;
+
+
+    void add()
+    {
+        int res;
+        res=a+b;
+        cout<<"Addition of a and b is: "<<res<<endl;
+    }
+
+
+    void mul()
+    {
+        int mul;
+        mul=a*b;
+        cout<<"Multiplication of a and b is: "<<mul<<endl;
+    }
+}
+
+
+using namespace Calculation;
+
+
+int main()
+{
+    add();
+    mul();
+    return 0;
+}
+=============================================
+#include<iostream>
+using namespace std;
+
+
+namespace Calculation
+{
+    int a;//=10;
+    int b;//=20;
+
+
+    void add()
+    {
+        int res;
+        cout<<"enter 2 numbers:"<<endl;
+        cin>>a>>b;
+        res=a+b;
+        cout<<"Addition of a and b is: "<<res<<endl<<endl;
+    }
+
+
+    void mul()
+    {
+        int mul;
+        cout<<"enter 2 numbers:"<<endl;
+        cin>>a>>b;
+        mul=a*b;
+        cout<<"Multiplication of a and b is: "<<mul<<endl;
+    }
+}
+
+
+using namespace Calculation;
+
+
+int main()
+{
+    add();
+    mul();
+    return 0;
+}
+
+
+==============================================
+#include <iostream>
+using namespace std;
+
+
+namespace Calculation
+{
+    void add(int a, int b)
+    {
+        cout << "Addition: " << a + b << endl;
+    }
+
+
+    void sub(int a, int b)
+    {
+        cout << "Subtraction: " << a - b << endl;
+    }
+
+
+    void mul(int a, int b)
+    {
+        cout << "Multiplication: " << a * b << endl;
+    }
+
+
+    void div(int a, int b)
+    {
+            cout << "Division: " << a / b << endl;
+    }
+}
+
+
+
+
+int main()
+{
+    int x = 10, y = 5;
+
+
+    Calculation::add(x,y);
+    Calculation::sub(x,y);
+    Calculation::mul(x,y);
+    Calculation::div(x,y);
+
+
+    return 0;
+}
+==============================
+/*wap for string concatenation
+hello
+bangalore
+o/p: hello bangalore
+
+
+
+
+str1? cin...
+str2?
+strcat() -> #include<cstring>
+cout -> o/p
+*/
+
+
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+
+namespace stringcat
+{
+    void cat()
+    {
+        char s1[40],s2[20];
+         cout<<"enter the string one"<<endl;
+         cin>>s1;
+         cout<<"enter the string two"<<endl;
+         cin>>s2;
+         strcat(s1,s2);
+         cout<<"After concatenation : "<< s1 <<endl;
+
+
+    }
+
+
+}
+using namespace stringcat;
+int main()
+{
+    cat();
+}
+
+
+
+
+==================================
+#include <iostream>
+#include<cstring>
+using namespace std;
+
+
+namespace stringcopy
+{
+    void copy()
+    {
+        char s1[20],s2[20];
+         cout<<"enter the string one"<<endl;
+         cin>>s1;
+
+
+         strcpy(s2,s1);
+         cout<<"String1 is : "<<s1<<endl;
+        cout<<"After copy string2 is  : "<<s2<<endl;
+
+
+    }
+
+
+}
+using namespace stringcopy;
+int main()
+{
+    copy();
+}
+
+
+=====================================
+#include <iostream>
+#include <cstring>
+using namespace std;
+ 
+int main()
+{
+    char str1[50], str2[50], res[100];
+ 
+    cout << "Enter first string: ";
+    cin >> str1;
+ 
+    cout << "Enter second string: ";
+    cin >> str2;
+ 
+    strcpy(res, str1);//reshma
+    strcat(res, str2);//kavya
+ 
+    cout << "Concatenated string: " << res << endl;
+ 
+    return 0;
+}

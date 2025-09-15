@@ -1,0 +1,221 @@
+﻿#include<iostream>
+//with pure virtual 
+using namespace std;
+ 
+class Animal  //abstract class -> pure virtual function
+{
+    public:
+    //void sound(); //declared
+    virtual void sound()= 0; //pure virtual
+ 
+    //virtual void sound(); //only declaration
+    //overriding -> same method name, same parameters
+ 
+    /*
+    void sound()
+    {
+        cout<<"Animal make sound!!!"<<endl;
+    }*/
+};
+ 
+class Dog : public Animal
+{
+public:
+   void sound() override
+   {
+       cout<<"Barks!!"<<endl;
+   }
+};
+ 
+class Cat : public Animal
+{
+public:
+   void sound() override
+   {
+       cout<<"Meows!!"<<endl;
+   }
+};
+ 
+ 
+int main()
+{
+    //Animal obj; //not allowed
+    //obj.sound();
+ 
+    /*Dog d;
+    d.sound();
+ 
+    Cat c;
+    c.sound();*/
+ 
+    //use pointers or references to abstract class
+    Animal *a1 = new Dog();
+    Animal *a2 = new Cat();
+ 
+    a1->sound();
+    a2->sound();
+   return 0;
+}
+========================================================================
+
+
+#include<iostream>
+//without virtual
+using namespace std;
+
+
+class Animal  //abstract class -> pure virtual function
+{
+    public:
+    //virtual void sound()= 0; //pure virtual
+
+
+    void sound()
+    {
+        cout<<"Animal make sound!!!"<<endl;
+    }
+};
+
+
+class Dog : public Animal
+{
+public:
+   void sound()
+   {
+       cout<<"Barks!!"<<endl;
+   }
+};
+
+
+class Cat : public Animal
+{
+ public:
+   void sound()
+   {
+       cout<<"Meows!!"<<endl;
+   }
+};
+
+
+
+
+int main()
+{
+    //use pointers or references to abstract class
+    Animal *a1 = new Dog();
+    a1->sound();
+    //o/p -> Animal make sound!!! , expected :Barks
+
+
+    Animal *a2 = new Cat();
+    a2->sound(); //Animal make sound!!! , expected:meow
+
+
+   return 0;
+}
+
+
+why? 
+without virtual , compile time binding
+checks only type of pointer not object 
+Animal *a1 = new Dog(); 
+
+
+Animal *a1;
+Animal::sound() 
+
+
+==================================================================#include<iostream>
+//without virtual
+using namespace std;
+
+
+class Animal  //abstract class -> pure virtual function
+{
+    public:
+    virtual void sound()= 0; //pure virtual
+    //object cannot be abstract
+
+
+    /*virtual void sound()
+    {
+        //cout<<"Animal make sound!!!"<<endl;
+    }*/
+};
+
+
+class Dog : public Animal
+{
+public:
+   void sound()
+   {
+       cout<<"Barks!!"<<endl;
+   }
+};
+
+
+class Cat : public Animal
+{
+ public:
+   void sound()
+   {
+       cout<<"Meows!!"<<endl;
+   }
+};
+
+
+
+
+int main()
+{
+    //use pointers or references to abstract class
+    Animal *a1 = new Dog();
+    a1->sound();
+    //o/p -> Animal make sound!!! , expected :Barks
+
+
+    Animal *a2 = new Cat();
+    a2->sound(); //Animal make sound!!! , expected:meow
+
+
+   return 0;
+}
+
+
+/*why?
+without virtual , compile time binding
+checks only type of pointer not object
+Animal *a1 = new Dog();
+
+
+Animal *a1;
+Animal::sound() */
+
+
+/*if virtual is used , runtime time binding
+Animal *a1 = new Dog();
+object */
+============================================================
+int main()
+{
+    //use pointers or references to abstract class
+    Animal *a1 = new Dog();
+    a1->sound();
+    //o/p -> Animal make sound!!! , expected :Barks
+
+
+    Animal *a2 = new Cat();
+    a2->sound(); //Animal make sound!!! , expected:meow
+
+
+    delete a1;
+    delete a2;
+    
+    
+    Dog obj ; // stack memory 
+    Dog *obj = new Dog(); //heap memory -> dynamically 
+    delete obj;
+    
+   return 0;
+}
+===================================================================

@@ -1,0 +1,346 @@
+﻿Hybrid Inheritance
+
+
+#include <iostream>
+using namespace std;
+
+
+class A
+{
+public:
+    void showA()
+    {
+        cout<<"printing class A!!"<<endl;
+    }
+};
+
+
+class B : public A
+{
+   public:
+    void showB()
+    {
+        cout<<"class B!!"<<endl;
+    }
+};
+
+
+class C : public A
+{
+    public:
+    void showC()
+    {
+        cout<<"on screen class C!!"<<endl;
+    }
+};
+
+
+class D : public B, public C
+{
+ public:
+    void showD()
+    {
+        cout<<"hybrid class D!!"<<endl;
+    }
+};
+
+
+int main()
+{
+    D obj;
+    obj.showB();
+    obj.showC();
+    obj.showD();
+
+
+    //obj.showA();
+    //ambiguity
+
+
+    //to resolve
+    obj.B::showA(); //specifying path 
+    obj.C::showA();
+    return 0;
+}
+
+
+==================================================
+Constructors in Inheritance 
+
+
+#include <iostream>
+
+
+using namespace std;
+
+
+class A
+{
+public:
+    int x;
+    A() //do nothing cons
+    {
+       cout<<"Main A cons"<<endl;
+    }
+};
+
+
+class B : public A
+{
+public:
+    B()
+    {
+        cout<<"B cons"<<endl;
+        x=100;
+    }
+};
+
+
+class C
+{
+public :
+    int y;
+    C()
+    {
+      cout<<"C cons"<<endl;
+       y=200;
+    }
+};
+
+
+class D : public B, public C
+{
+public :
+    D()
+    {
+        cout<<"D cons"<<endl;
+    }
+
+
+    void sum()
+    {
+        cout<<"sum = "<<x+y<<endl;
+    }
+};
+
+
+
+
+int main()
+{
+    D obj;//cons called
+    obj.sum();
+
+
+    return 0;
+
+
+}
+===================================================
+#include <iostream>
+using namespace std;
+
+
+class Company
+{
+  public:
+      string name="Cranes";
+      int empcnt=5000;
+      int vacancy=12;
+};
+
+
+class Employee : public Company
+{
+public:
+    string empname;
+    float marks;
+    float prev_sal;
+    float salary=0;
+    float exp;
+
+
+    Employee(string empname,float marks,float prev_sal,float exp)
+    {
+        this->empname=empname;
+        this->marks = marks;
+        this->prev_sal= prev_sal;
+        this->exp = exp;
+    }
+
+
+    void checkJob()
+    {
+        if(vacancy<=12 && marks>=75)
+        {
+           cout<<"Eligible for "<<name<<" Interview "<<endl<<endl;
+           cout<<"congrajulations, "<<empname<<" you are selected!!"<<endl;
+           empcnt++;
+
+
+           if(exp>=3 ||(prev_sal>15000 && prev_sal<=25000))
+            {
+                  salary = prev_sal+10000;
+                  cout<<"Current salary is : "<<salary<<endl;
+            }
+        }
+
+
+        else if(marks<75)
+        {
+            cout<<"sorry you are not eligible due to less score!!"<<endl;
+        }
+
+
+        else
+        {
+            cout<<"No vacancies "<<endl;
+        }
+
+
+        cout<<"Present count of employee : "<<empcnt<<endl;
+    }
+};
+
+
+int main()
+{
+    //Employee emp("pawan",80,20000,4);
+
+
+    Employee emp("swathi",60,8000,4);
+    emp.checkJob();
+    return 0;
+}
+=========================================
+#include<iostream>
+using namespace std;
+//Base class constructor will be automatically called
+//when will create an object for derived class
+
+
+//Base class constructor will be called first
+class Parent
+{
+public:
+    Parent()
+    {
+       cout<<"parent cons"<<endl;
+    }
+};
+
+
+class Child : public Parent
+{
+public:
+    Child()
+    {
+        cout<<"child cons"<<endl;
+    }
+};
+
+
+int main()
+{
+    Child obj;
+}
+
+
+================================================
+#include<iostream>
+using namespace std;
+//para const with inheritance
+class Base
+{
+public:
+    Base(int x)
+    {
+       cout<<"base cons : "<<x<<endl;
+    }
+};
+
+
+class Derived : public Base
+{
+public:
+    Derived(int a, int b) : Base(a) //x becomes a
+    {
+        cout<<"derived cons : "<<b<<endl;
+    }
+};
+
+
+int main()
+{
+    Derived obj(10,20);
+    return 0;
+}
+======================================================
+copy const with inheritance
+
+
+#include<iostream>
+using namespace std;
+//copy const with inheritance
+
+
+class Base
+{
+public:
+    int x;
+         //100     100
+    Base(int a) : x(a)
+    {
+       cout<<"base cons  "<<endl;
+    }
+
+
+    //copy cons of base
+    Base(Base &obj) //d1 -> 100 200
+    {
+        x =obj.x; //d1.x = 100
+         cout<<"\n base copy cons called"<<endl;
+    }
+};
+
+
+class Derived : public Base
+{
+public:
+    int y;
+        //100     200   //100    200
+    Derived(int a, int b) : Base(a), y(b)
+    {
+        cout<<"derived cons "<<endl;
+    }
+
+
+    //copy cons of derived
+    Derived(Derived &obj) : Base(obj) //base class copy con
+    {               //d1        d1
+        y=obj.y;//d1.y=200
+        cout<<"derived copy cons called"<<endl;
+    }
+
+
+    void disp()
+    {
+        cout<< " x : "<<x<<"     y : "<<y<<endl;
+    }
+};
+
+
+int main()
+{
+    Derived d1(100,200);
+    d1.disp();
+
+
+
+
+    Derived d2 = d1;//copy cons of derived
+    d2.disp();
+
+
+    return 0;
+}

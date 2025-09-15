@@ -1,0 +1,255 @@
+﻿Inheritance 
+==> Inheritance : when one object acquires all the properties and behaviours(data members + member functions) of parent object.
+here parent provides complete access to child, hence helps in reusability.
+
+
+Types :
+1. Single
+2. Multiple
+3. Hierarchical 
+4. Multilevel
+5. Hybrid 
+
+
+Derived class ---> Base class
+child           -> parent 
+
+
+syntax:
+class derived_class_name : visibility_mode base_class_name
+
+
+-----------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+
+class Base
+{
+public :
+    void display()
+    {
+        cout<<"Base class"<<endl;
+    }
+};
+
+
+class Derived : public Base 
+{
+    //Derived class inherits display() from base class
+};
+
+
+int main()
+{
+    
+    return 0;
+}
+
+
+-----------------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+
+class Base
+{
+public:
+    float salary=55000;
+};
+
+
+class Derived : public Base
+{
+   public:
+       float bonus=5000; //for salary
+};
+
+
+int main()
+{
+    Derived d; //child class
+    cout<<"Salary : "<<d.salary<<endl;
+    cout<<"Bonus : "<<d.bonus<<endl; //from parent
+    cout<<"Total Salary : "<<d.salary+d.bonus<<endl;
+    return 0;
+}
+
+
+===============================
+#include <iostream>
+using namespace std;
+
+
+class Animal
+{
+public:
+    void eat()
+    {
+        cout<<"Eating....!!!"<<endl;
+    }
+};
+
+
+class Horse : public Animal
+{
+   public:
+       void run()
+       {
+           cout<<"Running...!"<<endl;
+       }
+};
+
+
+int main()
+{
+    Horse h;
+    h.run();
+    h.eat(); //method present in parent class
+    return 0;
+}
+--------------------------
+#include <iostream>
+using namespace std;
+
+
+class Animal
+{
+public:
+    void eat()
+    {
+        cout<<"Eating....!!!"<<endl;
+    }
+};
+
+
+class Horse : public Animal
+{
+   public:
+       void run()
+       {
+           cout<<"Running...!"<<endl;
+           eat();
+       }
+
+
+};
+
+
+int main()
+{ 
+    Horse h;
+    h.run();
+    //h.eat(); //method present in parent class
+    return 0;
+}
+
+
+============================================
+visibility modes: it is accessible
+1. public ->  to all the functions of the program
+2. private -> within the class only
+3. protected -> within its own class as well as the class immediately derived from it 
+
+
+2) Multilevel inheritance 
+#include <iostream>
+using namespace std;
+
+
+class Animal
+{
+public:
+    void eat()
+    {
+        cout<<"Eating....!!!"<<endl;
+    }
+};
+
+
+class Horse : public Animal
+{
+   public:
+       void run()
+       {
+           cout<<"Running...!"<<endl;
+           //eat();
+       }
+
+
+};
+
+
+class BabyHorse : public Horse
+{
+   public:
+       void sleep()
+       {
+           cout<<"Always Sleeping"<<endl;
+           //run(); //call parent
+       }
+};
+
+
+
+
+int main()
+{
+    BabyHorse bh;
+    bh.sleep();
+    bh.run(); //parent
+    bh.eat(); //grandparent
+    return 0;
+}
+----------------------------------------
+#include <iostream>
+using namespace std;
+//Multilevel Inheritance
+class Animal
+{
+public:
+
+
+    void kill()
+    {
+       cout<<"Basically for food!!"<<endl;
+    }
+
+
+    void eat()
+    {
+        cout<<"Eating....!!!"<<endl;
+    }
+};
+
+
+class Horse : public Animal
+{
+   public:
+       void run()
+       {
+           cout<<"Running...!"<<endl;
+       }
+};
+
+
+class BabyHorse : public Horse
+{
+   public :
+       void sleep()
+       {
+          cout<<"Sleeping...!"<<endl;
+       }
+
+
+};
+
+
+int main()
+{
+    BabyHorse bh;
+    bh.sleep();
+    bh.eat();
+    bh.run();
+    return 0;
+}

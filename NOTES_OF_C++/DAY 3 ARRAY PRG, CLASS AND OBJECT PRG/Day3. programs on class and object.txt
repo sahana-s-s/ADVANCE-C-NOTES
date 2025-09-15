@@ -1,0 +1,426 @@
+﻿//
+StudentDetails => initialize in class 
+stdid -> int
+stname -> string
+collegename -> string
+degree ->string
+score -> float 
+
+
+print the details in main method ...
+
+
+=============================
+//c++ object and class
+
+
+#include<iostream>
+using namespace std;
+
+
+class Employee
+{
+  public : //private and protected
+    int id;       // ==> access specifiers /modifiers default:private
+    string name;   //char name[30];
+    float salary;         //local variables
+
+
+    void input(int slno,string n,float sal) //instance var
+    {
+        id = slno;
+        name = n;
+        salary = sal;
+
+
+        /*cout<<endl<<"Employee details are:"<<"\n";
+        cout<<id<<endl; // e1.id not required bcz we are directly
+        cout<<name<<endl; //printing inside the class itself
+        cout<<salary<<endl;*/
+
+
+    }
+
+
+    void disp()
+    {
+        cout<<endl<<"Employee details are:"<<"\n";
+        cout<<id<<endl; // e1.id not required bcz we are directly
+        cout<<name<<endl; //printing inside the class itself
+        cout<<salary<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Employee e1;  //e1 is an object of employee class
+    //e1.id=101;
+    //e1.name="Akarsh";
+    //e1.salary=25000.21;
+
+
+    e1.input(102,"Jaishankar",28000);
+    e1.disp();
+
+
+    e1.input(103,"vignesh",27000);
+    e1.disp(); 
+    // it is working bcz we are displaying then and there itself
+//suppose by commenting 44 line then it wont work 
+
+
+        //cout<<e1.id<<endl;
+        //cout<<e1.name<<endl;
+        //cout<<e1.salary<<endl;
+    return 0;
+}
+==================================================
+#include<iostream>
+using namespace std;
+
+
+class Employee
+{
+  public :
+    int id;
+    string name; //char name[30];
+    float salary; //local var
+
+
+    //data members are using inside class -> methods ,
+    //objects are not required
+   /* void accept(int id ,string name,float salary) //instance
+    {
+       id = id;
+       name = name;
+       salary = salary; //naming conflicts
+
+
+       cout<<id<<" "<<name<<" "<<salary<<endl;
+       can have same name as local name when printing the data inside accept method itself
+    }*/
+
+
+
+
+    void accept(int id1 ,string name1,float salary1) //instance
+    {
+       id = id1;
+       name = name1;
+       salary = salary1;
+
+
+       //cout<<id<<" "<<name<<" "<<salary<<endl;
+    }
+
+
+    void disp()
+    {
+       cout<<id<<" "<<name<<" "<<salary<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Employee obj;
+    obj.accept(002,"Rajesh",45000);
+    obj.disp();
+
+
+    Employee obj1;
+    obj1.accept(003,"Dennis",55000);
+    obj1.disp();
+    return 0;
+}
+
+
+======================================
+#include<iostream>
+using namespace std;
+
+
+class Employee
+{
+  public : //private and protected
+    int id;       // ==> access specifiers /modifiers default:private
+    string name; //char name[30];
+    float salary; // instance variables -> accessed by all method and inside the class
+
+
+    void input(int slno,string n,float sal) // local var
+    {
+        id = slno;
+        name = n;
+        salary = sal;
+    }
+
+
+    void disp()
+    {
+        cout<<endl<<"Employee details are:"<<"\n";
+        cout<<"Id is : "<<id<<endl; // e1.id not required bcz we are directly
+        cout<<"Name is : "<<name<<endl; //printing inside the class itself
+        cout<<"Salary is : "<<salary<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+   /* Employee e1;
+    e1.input(102,"Prathap",28000);
+    //e1.disp();
+
+
+    e1.input(103,"Senthil",30000);
+    //e1.disp();
+
+
+    e1.input(104,"Srujan",31000);
+    e1.disp();*/
+
+
+    Employee e1,e2,e3;
+    e1.input(102,"Prathap",28000);
+    e2.input(103,"Senthil",30000);
+    e3.input(104,"Srujan",31000);
+    e1.disp();
+    e2.disp();
+    e3.disp();
+    return 0;
+}
+
+
+=====================================
+//c++ object and class
+
+
+#include<iostream>
+using namespace std;
+
+
+class Employee
+{
+  public : //private and protected
+    int id;       // ==> access specifiers /modifiers default:private
+    string name; //char name[30];
+    float salary; //local variables
+
+
+    void input(int slno,string n,float sal) //instance var
+    {
+        id = slno;
+        name = n;
+        salary = sal;
+    }
+
+
+    void disp()
+    {
+        cout<<endl<<"Employee details are:"<<"\n";
+        cout<<id<<endl; // e1.id not required bcz we are directly
+        cout<<name<<endl; //printing inside the class itself
+        cout<<salary<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    Employee e1,e2,e3;  //e1 is an object of employee class
+    Employee e4;
+
+
+    e1.input(102,"Jaishankar",28000);
+    e2.input(103,"vignesh",27000);
+    e3.input(104,"Vamshi",29000);
+    e4.input(105,"reshma",30000);
+
+
+    e1.disp();
+    e2.disp();
+    e3.disp();
+    e4.disp();
+
+
+    return 0;
+}
+--------------------------------------
+#include<iostream>
+using namespace std;
+
+
+class Employee
+{
+  public :
+    int id;
+    string name; //char name[30];
+    float salary; //local var
+
+
+
+
+    void input(int id1 ,string name1,float salary1) //instance
+    {
+       id = id1;
+       name = name1;
+       salary = salary1;
+    }
+
+
+    void disp()
+    {
+       cout<<id<<" "<<name<<" "<<salary<<endl;
+    }
+
+
+};
+
+
+int main()
+{
+    /*Employee e1,e2,e3;  //e1 is an object of employee class
+    Employee e4;
+
+
+    e1.input(102,"Jaishankar",28000);
+    e2.input(103,"vignesh",27000);
+    e3.input(104,"Vamshi",29000);
+    e4.input(105,"reshma",30000);
+
+
+    e1.disp();
+    e2.disp();
+    e3.disp();
+    e4.disp();*/
+
+
+
+
+   /* Employee e1; //e1 is an object of employee class
+
+
+    e1.input(102,"Jaishankar",28000);
+    e1.input(103,"vignesh",27000);
+    e1.input(104,"Vamshi",29000);
+    e1.input(105,"reshma",30000);
+
+
+    e1.disp();
+    e1.disp();
+    e1.disp();
+    e1.disp();*/
+
+
+    Employee e1; //e1 is an object of employee class
+
+
+    e1.input(102,"Jaishankar",28000);
+    e1.disp();
+
+
+    e1.input(103,"vignesh",27000);
+    e1.disp();
+
+
+    e1.input(104,"Vamshi",29000);
+    e1.disp();
+
+
+    e1.input(105,"reshma",30000);
+    e1.disp();
+
+
+    return 0;
+}
+
+
+==============================================
+#include<iostream>
+
+
+using namespace std;
+
+
+class operation
+{
+public:
+     int num1,num2;
+     int res;
+
+
+     void addinput(int n1,int n2)
+     {
+         num1=n1;
+         num2=n2;
+         res=n1+n2;
+         cout<<"Addition of 2 numbers "<<endl;
+     }
+
+
+     void sub(int n1,int n2)
+     {
+         num1=n1;
+         num2=n2;
+         res=n1-n2;
+         cout<<"Subtraction of 2 numbers "<<endl;
+     }
+
+
+     void mul(int n1,int n2)
+     {
+         num1=n1;
+         num2=n2;
+         res=n1*n2;
+         cout<<"Multiplication of 2 numbers "<<endl;
+     }
+
+
+     void div(int n1,int n2)
+     {
+         num1=n1;
+         num2=n2;
+         res=n1/n2;
+         cout<<"Division of 2 numbers "<<endl;
+     }
+
+
+     void print()
+     {
+         cout<<"Numbers are: "<<num1<<" " <<num2<<endl;
+         cout<<"Result is : "<<res<<endl<<endl;
+     }
+
+
+};
+
+
+int main()
+{
+    operation obj; //object ?
+    obj.addinput(20,30);
+    obj.print();
+
+
+    obj.sub(50,20);
+    obj.print();
+
+
+    obj.mul(2,3);
+    obj.print();
+
+
+    obj.div(10,2);
+    obj.print();
+    return 0;
+}

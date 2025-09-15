@@ -1,0 +1,168 @@
+﻿Friend functions
+
+
+it is a function, they have special access to the private and protected members(variables) of another class .
+
+
+friend keyword 
+
+
+1. Friend Function
+2. Friend Class
+------------------------------------------------------------
+If a function is defined as a friend function in C++, then the protected and private data of a class can be accessed using the function.
+
+
+By using the keyword friend compiler knows the given function is a friend function.
+
+
+the declaration of a friend function should be done inside the body of a class starting with the keyword friend.
+
+
+class class_name    
+{    
+    friend data_type function_name(argument/s); 
+      //syntax of friend function.  
+}; 
+-------------------------------------------------------
+-> characteristics of friend
+1. cannot be called using the object , as it is not in the scope of that class.
+2. can be declared either in private/public part
+3. cannot access the member names directly 
+4. friend function can also be called without creating an object as a normal function
+-------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+
+class Example
+{
+    //public: 
+    friend void disp(); //friend function declaration
+};
+
+
+void disp()
+{
+    
+}
+
+
+int main()
+{
+    Example obj;
+    
+    return 0;
+}
+
+
+=======================================================
+friend function 
+
+
+#include <iostream>
+using namespace std;
+
+
+class Example
+{
+private:
+    int radius;
+    friend int disp(Example e); //input is of type class -> object
+
+
+public:
+    Example()
+    {
+        radius=2;
+    }
+
+
+   // friend int disp(Example); //friend function
+};
+
+
+int disp(Example e) //defination of friend fun is outside the class
+{
+    return 3.14*e.radius*e.radius;
+}
+
+
+int main()
+{
+    cout << "Hello world!" << endl;
+
+
+    Example obj;
+    cout<<"Area of Circle with radius =2 is: "<<disp(obj)<<endl;
+    //cout<<obj.radius; not possible
+    return 0;
+}
+========================================================
+/*#include <iostream>
+using namespace std;
+
+
+class Example
+{
+private:
+    int radius;
+    friend int disp(Example e); //input is of type class -> object
+
+
+public:
+    Example()
+    {
+        radius=2;
+    }
+
+
+   // friend int disp(Example); //friend function
+};
+
+
+int disp(Example e) //defination of friend fun is outside the class
+{
+    return 3.14*e.radius*e.radius;
+}
+
+
+int main()
+{
+    cout << "Hello world!" << endl;
+
+
+    Example obj;
+    cout<<"Area of Circle with radius =2 is: "<<disp(obj)<<endl;
+    //cout<<obj.radius; not possible
+    return 0;
+}
+*/
+
+
+#include <iostream>
+using namespace std;
+
+
+class Example
+{
+private:
+    int radius;
+    friend float disp(int a); //declaration
+};
+
+
+float disp(int a)  //outside defination
+{
+    return 3.14*a*a;
+}
+
+
+int main()
+{
+    cout << "Hello world!" << endl;
+    //Example obj;
+    cout<<disp(4)<<endl;
+    //friend function can also be called without creating an object as a normal function
+    return 0;
+}

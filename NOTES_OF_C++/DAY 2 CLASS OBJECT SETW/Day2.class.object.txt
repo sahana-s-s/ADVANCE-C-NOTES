@@ -1,0 +1,130 @@
+﻿/*#include <iostream>
+using namespace std;
+int main()
+{
+    float fnum1=3.014,fnum2=5.12;
+    cout << "Numbers are " << endl;
+    cout << fnum1<<"\n"<<fnum2;
+    return 0;
+}
+*/
+
+
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    float fnum1,fnum2;
+
+
+    cout<<"enter 2 float values: "<<endl;
+    cin >> fnum1;
+    cin >> fnum2;
+
+
+    cout << endl<< "Numbers are " << endl;
+    cout << fnum1<<"\n"<<fnum2;
+    return 0;
+}
+===============
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    float fnum1,fnum2;
+
+
+    cout<<"enter 2 float values: "<<endl;
+    cin >> fnum1;
+    cin >> fnum2;
+
+
+    cout << endl<< "Numbers are " << endl;
+    cout << fnum1<<"\n"<<fnum2;
+
+
+    if(fnum1>=0 && fnum2>=0)
+    {
+        cout<<"\n Positive numbers"<<endl;
+    }
+
+
+    else{
+        cout<<"\n Negative numbers"<<endl;
+    }
+    return 0;
+}
+
+
+=======================================
+1. WAP for armstrong number using functions
+    23 => 2*2*2 + 3*3*3
+          8+27 = 35
+
+
+   153 => 1 + 125 + 27 => 153  
+
+
+2. WAP for vowel / consonant using switch case 
+
+
+#include<iostream>
+using namespace std;
+
+
+int main()
+{
+    char ch;
+    cout<<"enter the character\n";
+    cin>>ch;
+
+
+    switch(ch) //switch(2)
+    {
+       case 'a':
+       case 'e':
+       case 'i':
+       case 'o':
+       case 'u': cout<<"vowel\n";
+                 break;
+
+
+      default: cout<<"Consonant!!!\n";
+               break;
+    }
+    return 0;
+}
+
+
+=========================================
+
+
+Objects are real world entity
+-instance of class  
+ex: pen, mobile,laptop,chair etc..
+
+
+object has :
+1. state -> data members/attributes , int num;
+2. behaviour -> functionality, methods -> printing num
+
+
+Car -> state ==>  brand , color, speed 
+       behaviour ==> start, brake, accelerate 
+
+
+state -> data held by object
+behaviour -> what the object can do 
+-----------------------------------------------
+
+
+class : class is a group of similar objects ,
+it is a template for which objects are created .
+
+
+1. varibles
+2. methods/functions

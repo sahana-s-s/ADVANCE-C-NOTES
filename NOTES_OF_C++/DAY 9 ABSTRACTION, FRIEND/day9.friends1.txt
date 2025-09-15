@@ -1,0 +1,346 @@
+﻿#include <iostream>
+using namespace std;
+
+
+class Example
+{
+private:
+    int radius;
+    int num1,num2;
+    friend int area_of_circle(Example e);
+    friend int add(Example e);
+
+
+public:
+    Example()
+    {
+        num1=10;
+        num2=30;
+        radius=2;
+    }
+
+
+   // friend int disp(Example); //friend function
+};
+
+
+int area_of_circle(Example e) //defination of friend fun is outside the class
+{
+    return 3.14*e.radius*e.radius;
+}
+
+
+int add(Example e)
+{
+    return e.num1+e.num2;
+}
+
+
+int main()
+{
+    cout << "Hello world!" << endl;
+
+
+    Example obj;
+    cout<<"Area of Circle with radius=2 is: "<<area_of_circle(obj)<<endl;
+
+
+    cout<<"Addition of 2 numbers is: "<<add(obj)<<endl;
+    return 0;
+}
+========================================
+#include <iostream>
+
+
+#include <string>
+
+
+using namespace std;
+ 
+class Example
+
+
+{
+
+
+private:
+
+
+    string name;
+
+
+    friend void disp(Example e);
+ 
+public:
+
+
+    Example()
+
+
+    {
+
+
+        name = "anusha";
+
+
+    }
+
+
+};
+ 
+void disp(Example e)
+
+
+{
+
+
+    cout << "Name is " << e.name << endl;
+
+
+}
+ 
+int main()
+
+
+{
+
+
+    cout << "Hello world!" << endl;
+ 
+    Example obj;
+
+
+    disp(obj);
+
+
+}
+
+
+ 
+#include <iostream>
+
+
+#include <string>
+
+
+using namespace std;
+ 
+class Example
+
+
+{
+
+
+private:
+
+
+    string name;
+
+
+    friend string disp(string str);
+
+
+    //friend void disp(string str);
+
+
+};
+ 
+/*void disp(string str)
+
+
+{
+
+
+    //return str;
+
+
+    cout << "Name is " << str << endl;
+
+
+}*/
+ 
+string disp(string str)
+
+
+{
+
+
+    return str;
+
+
+}
+ 
+int main()
+
+
+{
+
+
+    cout << "Hello world!" << endl;
+
+
+    //disp("anusha");
+
+
+    cout<<disp("anusha");
+
+
+}
+
+
+===================================================
+Friend Class
+
+
+it is also used to access both private and protected members of the class in which it has been declared as friend.
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Naimish
+{
+   int num=5000; //private
+   string str="Bangalore";
+
+
+   friend class Venu; //friend class ,
+   //it has an ability to access private data of class A
+};
+
+
+class Venu
+{
+public :
+    void disp(Naimish &na)
+    {
+        cout<<"Value of num: "<<na.num<<endl;
+        cout<<"Address: "<<na.str<<endl;
+    }
+};
+
+
+int main()
+{
+   Naimish nobj;
+   Venu vobj;
+
+
+   vobj.disp(nobj);
+    return 0;
+}
+-----------------------------------------------------
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Naimish
+{
+   int num=5000; //private
+   string str="Bangalore";
+
+
+   friend class Venu; //friend class ,
+   //it has an ability to access private data of class A
+};
+
+
+class Kavya
+{
+   int fnum=2300;
+   friend class Venu;
+};
+
+
+
+
+class Venu
+{
+public :
+    void disp(Naimish &na)
+    {
+        cout<<"Value of num: "<<na.num<<endl;
+        cout<<"Address: "<<na.str<<endl;
+    }
+
+
+    void disp1(Kavya &k)
+    {
+        cout<<"Value of fnum: "<<k.fnum<<endl;
+    }
+};
+
+
+int main()
+{
+   Naimish nobj;
+   Venu vobj;
+   Kavya kobj;
+
+
+   vobj.disp(nobj);
+   vobj.disp1(kobj);
+
+
+    return 0;
+}
+
+
+================================================================
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Rishitha
+{
+   private:
+       int pnum;
+
+
+   protected:
+      int rnum;
+
+
+   public:
+    Rishitha()
+    {
+       pnum = 100;
+       rnum = 200;
+    }
+
+
+    friend class Dennis;
+    //can access private data of  Rishitha class
+
+
+};
+
+
+class Dennis
+{
+   public:
+       void disp(Rishitha &obj)
+       {
+           cout<<"Private var is : "<<obj.pnum<<endl;
+           cout<<"Protected var is : "<<obj.rnum<<endl;
+       }
+};
+
+
+int main()
+{
+    Rishitha r; //100 200
+    Dennis dobj;
+
+
+    dobj.disp(r); //call disp using obj of main class
+    return 0;
+}

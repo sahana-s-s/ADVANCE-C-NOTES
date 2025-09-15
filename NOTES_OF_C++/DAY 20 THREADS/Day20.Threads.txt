@@ -1,0 +1,137 @@
+﻿Threads =? allow your program to do multiple things at once (parallelism) 
+
+
+A thread is the smallest sequence of programmed instructions that can be managed independently by the scheduler.
+examples -> covered in theory 
+
+
+thread() => create and runs new thread
+join() => waits for thread to finish 
+detach() => runs in background without waiting 
+
+
+#include <iostream>
+//c++ 11 <thread> header
+
+
+//std::thread -> creates and manages threads
+
+
+#include<thread>
+using namespace std;
+
+
+void disp(string msg)
+{
+    cout<<msg<<endl;
+}
+
+
+int main()
+{
+    thread t1(disp,"hello using thread!!");
+    t1.join();//wait for thread to complete its job
+    cout<<"Main thread ends"<<endl;
+    //t1.detach();//risky
+    return 0;
+}
+==================================
+#include <iostream>
+#include<thread>
+using namespace std;
+
+
+void task1()
+{
+   for(int i=1;i<=5;i++)
+   {
+       cout<<"Task1 : "<<i<<endl;
+   }
+}
+
+
+void task2()
+{
+   for(int i=1;i<=5;i++)
+   {
+       cout<<"Task2 : "<<i<<endl;
+   }
+}
+
+
+int main()
+{
+    thread t1(task1); //t1 and t2 are thread objects
+    thread t2(task2);
+
+
+    t1.join();
+
+
+    t2.join();
+    return 0;
+}
+//In parallel with main thread , t1 is started first
+//t2 also joins
+=========================================================
+#include <iostream>
+#include<thread>
+using namespace std;
+
+
+int main()
+{
+    thread t1([](){
+    cout<<"Threads Using lambda"<<endl;
+              });
+
+
+    t1.join();
+    return 0;
+}
+======================================================
+#include <iostream>
+#include<thread>
+using namespace std;
+//passing arguments  to thread 
+void addNumbers(int a,int b)
+{
+   cout<<"Sum: "<<a+b<<endl;
+}
+
+
+int main()
+{
+    thread t1(addNumbers,5,8);
+    t1.join();
+    return 0;
+}
+============================================================
+
+
+#include <iostream>
+#include<thread>
+using namespace std;
+
+
+void printNumbers(string str)
+{
+    for(int i=1;i<=5;i++)
+    {
+      cout<<str <<": "<<i<<endl;
+      this_thread::sleep_for(chrono::milliseconds(2500));
+      //0.5 sec
+    }
+}
+
+
+int main()
+{
+    thread t1(printNumbers,"bangalore");
+    thread t2(printNumbers,"mysore");
+
+
+    t1.join();
+    t2.join();
+    return 0;
+}
